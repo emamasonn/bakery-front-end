@@ -17,9 +17,9 @@ import RoomIcon from '@material-ui/icons/Room';
 
 const useStyle = makeStyles({
     direction: {
-            background: "#464343",
-            color: "#fff",
-            borderTop: "#464343 50px solid",
+                background: "#464343",
+                color: "#fff",
+                borderTop: "#464343 50px solid",
             },
     whatsApp: {
                 position:"fixed",
@@ -31,10 +31,18 @@ const useStyle = makeStyles({
                 color:"#FFF",
                 borderRadius:"50px",
                 textAlign: "center",
-                fontSize:"30px",
-                boxShadow: "2px 2px 3px #999",
-                zIndex:100,
         },
+    icon: {
+                fontSize: 12,
+        },
+    iconWhatsApp: {
+                fontSize: 25,
+        },
+    img: {
+                borderRadius: "50%",
+                width:"200px", 
+                height:"200px",
+    }
       }
   );
 function Footer() {
@@ -44,7 +52,7 @@ function Footer() {
      <Grid container>
         <Grid item xs={12} sm={6} md={4}>
             <Box textAlign="center" p={0} ml={1} mb={5} >
-                <img src={Untitled} alt="Untitled" style={{borderRadius: "50%", width:"200px", height:"200px"}}/>
+                <img src={Untitled} alt="Untitled" className={classes.img}/>
             </Box>
         </Grid>                
         <Grid item xs={12} sm={6} md={4}>
@@ -97,11 +105,11 @@ function Footer() {
         </Grid>
     </Grid>
         <Button className={classes.whatsApp} href="https://wa.me/5491137900735/?text=Hola%20Ayemostartas...">
-            <WhatsAppIcon style={{ fontSize: 25 }}/>
+            <WhatsAppIcon className={classes.iconWhatsapp}/>
         </Button>                
     <Divider/>
     <Box  p={2} textAlign="center">
-        Copyright Ayemostartas <FavoriteBorderIcon style={{ fontSize: 12 }}/> - 2020. Desarrollado por Coderhood.
+        Copyright Ayemostartas <FavoriteBorderIcon className={classes.icon}/> - 2020. Desarrollado por Coderhood.
     </Box>
 </div>
 ) }
