@@ -8,12 +8,12 @@ const useStyle = makeStyles({
     }
 })
 
+
 const Home = () => {
     const classes = useStyle()
     return(
         <div className={classes.contentHome}>
             Esto es el home
-
         </div>
     )
 }
