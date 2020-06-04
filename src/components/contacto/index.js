@@ -2,20 +2,21 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyle = makeStyles({
-    contentHome:{
-        height: 5000,
+    contentContacto:{
+        height: 500,
         marginTop: 200
     }
 })
 
 
-const Home = () => {
+const Contacto = () => {
     const classes = useStyle()
+
     return(
-        <div className={classes.contentHome}>
-            Esto es el home
+        <div className={classes.contentContacto}>
+            Esto es el componente contacto!
         </div>
     )
 }
 
-export default Home;
+export default Contacto;
