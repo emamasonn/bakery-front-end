@@ -69,12 +69,15 @@ const Categories = () => {
         </IconButton>
       </Paper>
       <Grid item>
-        <Typography variant="body1">Categorias</Typography>
+        <Typography variant="h6">Categorias</Typography>
         <List component="nav">
           {categories.map((category, index) => (
-            <ListItem button key={index}>
-              {category.name}
-            </ListItem>
+            <React.Fragment>
+              <ListItem button key={index}>
+                {category.name}
+              </ListItem>
+              <Divider />
+            </React.Fragment>
           ))}
         </List>
       </Grid>

@@ -19,6 +19,15 @@ const useStyles = makeStyles({
   icon: {
     marginRight: 100,
   },
+  padding: {
+    padding: 5,
+  },
+  cardAction: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "0 10px",
+  },
 });
 
 const ProductCard = () => {
@@ -34,22 +43,28 @@ const ProductCard = () => {
           image={ProductImage}
           title="Contemplative Reptile"
         />
-        <CardContent>
+        <CardContent className={classes.padding}>
           <Typography
             className={classes.padding}
-            variant="body2"
+            variant="body1"
             component="h3"
           >
             Tortita Rica
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
+      <div className={classes.cardAction}>
         <Typography color="secondary">$300</Typography>
-        <IconButton className={classes.icon} color="primary">
-          <ShoppingCartRoundedIcon />
-        </IconButton>
-      </CardActions>
+        <CardActions className={classes.padding}>
+          <IconButton
+            className={classes.icon}
+            color="primary"
+            className={classes.padding}
+          >
+            <ShoppingCartRoundedIcon />
+          </IconButton>
+        </CardActions>
+      </div>
     </Card>
   );
 };
