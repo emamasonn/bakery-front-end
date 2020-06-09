@@ -129,7 +129,7 @@ const NavegationBar = () => {
                                 </ListItem>
                                 <Divider />
                                 <ListItem button key='contacto'>
-                                    <Link to="/contacto" className={classes.linkTextBurger}>
+                                    <Link to="/Contact" className={classes.linkTextBurger}>
                                         <ListItemIcon><LocalMallIcon /></ListItemIcon>
                                         <ListItemText primary='Contacto'/>
                                     </Link>
@@ -142,7 +142,7 @@ const NavegationBar = () => {
             <Hidden xsDown>
                 <div>
                     <Link to="/" className={classes.linkText}>Tienda</Link>
-                    <Link to="/contacto" className={classes.linkText}>Contacto</Link>
+                    <Link to="/Contact" className={classes.linkText}>Contacto</Link>
                 </div>
             </Hidden>
             <div>

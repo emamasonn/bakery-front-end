@@ -17,9 +17,9 @@ import RoomIcon from '@material-ui/icons/Room';
 
 const useStyle = makeStyles({
     direction: {
-                background: "#464343",
+                background: "#263238",
                 color: "#fff",
-                borderTop: "#464343 50px solid",
+                borderTop: "#263238 50px solid",
             },
     whatsApp: {
                 position:"fixed",
@@ -50,12 +50,13 @@ function Footer() {
     return (
 <div className={classes.direction}>
      <Grid container>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={12} sm={4} md={4}>
             <Box textAlign="center" p={0} ml={1} mb={5} >
                 <img src={Untitled} alt="Untitled" className={classes.img}/>
             </Box>
         </Grid>                
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={12} sm={4} md={4}>
+            <Box mb={5} >
             <Box mb={2} ml={3}>
                 <Typography variant="h7">MEDIOS DE PAGO</Typography>
                 </Box>
@@ -75,9 +76,11 @@ function Footer() {
                     <ArrowRightIcon fontSize="small" /> 
                     <Box ml={0.5}><Typography variant="p">Efectivo</Typography></Box>
                 </ListItem>
-            </List>            
+            </List>
+            </Box>                    
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={12} sm={4} md={4}>   
+        <Box mb={5} >   
             <Box mb={2} ml={2}>
                 <Typography variant="h7">CONTACTANOS</Typography>
                 </Box>
@@ -102,6 +105,7 @@ function Footer() {
                     <Box ml={0.5}><Typography variant="p">Ayemostartas</Typography></Box>
                 </ListItem>
             </List>
+            </Box> 
         </Grid>
     </Grid>
         <Button className={classes.whatsApp} href="https://wa.me/5491137900735/?text=Hola%20Ayemostartas...">
@@ -109,7 +113,7 @@ function Footer() {
         </Button>                
     <Divider/>
     <Box  p={2} textAlign="center">
-        Copyright Ayemostartas <FavoriteBorderIcon className={classes.icon}/> - 2020. Desarrollado por Coderhood.
+        Copyright Ayemostartas <FavoriteBorderIcon className={classes.icon}/> - 2020. Desarrollado por Carpi.
     </Box>
 </div>
 ) }

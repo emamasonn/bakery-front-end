@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import NavegationBar from '../components/NavegationBar'
 import Home from '../components/Home'
 import { makeStyles } from '@material-ui/core/styles';
-import Footer from '../components/Footer/Footer';
+import Contact from '../components/Contact';
 
  const useStyles = makeStyles(theme => ({
     root: {
@@ -23,6 +23,7 @@ export default function Router() {
         <NavegationBar />
         <Switch>
             <Route exact path={'/'} component={Home}/>
+            <Route exact path='/Contact' component={Contact}/>
         </Switch>
     </BrowserRouter>
   );
