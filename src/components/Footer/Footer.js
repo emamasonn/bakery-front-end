@@ -113,7 +113,7 @@ function Footer() {
         </Button>                
     <Divider/>
     <Box  p={2} textAlign="center">
-        Copyright Ayemostartas <FavoriteBorderIcon className={classes.icon}/> - 2020. Desarrollado por Carpi.
+        Copyright Ayemostartas <FavoriteBorderIcon className={classes.icon}/> - 2020. Desarrollado por krappy.
     </Box>
 </div>
 ) }
