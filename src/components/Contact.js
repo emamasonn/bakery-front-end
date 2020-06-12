@@ -16,6 +16,7 @@ import NavegationBar from './NavegationBar';
 import TextField from '@material-ui/core/TextField';
 import {withStyles} from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
+import Maps from './Map/Map';
 
 const CssTextField = withStyles({
   root: {
@@ -76,18 +77,27 @@ const useStyles = makeStyles((theme) => ({
           width: "70%",
           margin: "0% 0% 3% 15%",
   },
+  Map:{
+          width: "80%",
+          marginLeft: "10%",
+          marginTop: "100px",
+  }
+  
   }));
 function Contact() {
   const classes = useStyles();
     return(
         <div>
           <NavegationBar/>
+          <Box  className={classes.Map}>
+            <Maps/>
+            </Box>
             <Grid container>     
                 <Grid item
                       xs={12} 
                       sm={6} 
                       md={6}>
-                <Box mt={11}>
+                <Box mt={3} >
                   <Box className={classes.TitleBox}>  
                     <Typography className={classes.Typography} variant="h6">Ayemostartas</Typography><Divider/> 
                     </Box>
@@ -135,7 +145,7 @@ function Contact() {
                     item xs={12} 
                     sm={6} 
                     md={6}>
-                    <Box m={0.5} mt={11}>
+                    <Box m={0.5} mt={3} mb={3}>
                       <Box className={classes.TitleBox}>
                          <Typography className={classes.Typography} variant="h6">Envianos tu consulta</Typography><Divider/>  
                       </Box>
