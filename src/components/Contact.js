@@ -14,33 +14,25 @@ import Button from '@material-ui/core/Button';
 import Footer from './Footer/Footer';
 import NavegationBar from './NavegationBar';
 import TextField from '@material-ui/core/TextField';
-import {withStyles} from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Maps from './Map/Map';
+import Container from '@material-ui/core/Container';
+import NoSsr from '@material-ui/core/NoSsr';
+import styled from 'styled-components';
 
-const CssTextField = withStyles({
-  root: {
-          display: "grid",
-          gridTemplateColumns: "100% 100% 100% 100% 100%",
-          gridTemplateRows: "100% 100% 100% 100% 100%",
-          borderRadius: "8px",
-          height: 35,
-          width: "104%",
-          border: "2px solid #E0E0E0",
-          outline:"none",},})(TextField);
-
-const CssTextArea = withStyles({
-  root: {
-          display: "grid",
-          gridTemplateColumns: "100%",
-          gridTemplateRows: "100%",
-          width: "210%",
-          height: 180,
-          border: "2px solid #E0E0E0",
-          borderRadius: "8px",
-          outline:"none",
-          underline:"none"},})(TextField);
-
+const StyledTextField = styled(TextField)`
+  .MuiOutlinedInput-root {
+    fieldset {
+      border-color: rgb(216, 216, 216);
+    }
+    &:hover fieldset {
+      border-color: rgb(216, 216, 216);
+    }
+    &.Mui-focused fieldset {
+      border-color: rgb(216, 216, 216);
+    }
+  }
+`;
 const useStyles = makeStyles((theme) => ({  
   General:{
           display: "flex",
@@ -52,20 +44,23 @@ const useStyles = makeStyles((theme) => ({
           marginBottom: 20,
   },
   FormControl:{
-          width: "47%",
-          marginRight:"3%",
+          width: "100%",
           marginBottom: 20,
   },
-  Label:{
-          marginBottom: 8,
-          fontSize: 15,
+  TextField:{
+          width: "100",
+          marginLeft: "20px",
+          marginRight: "20px"
   },
   Icon:{
           fontSize: "230%",
           color: "#ad172b",
+          marginRight: 5
   },
   Button:{
           width: "100%",
+          marginLeft: "20px",
+          marginTop: "10px",
   },
   Typography:{
           fontSize: 25,
@@ -75,20 +70,26 @@ const useStyles = makeStyles((theme) => ({
   },
   TitleBox:{
           width: "70%",
-          margin: "0% 0% 3% 15%",
+          margin: "0% 0% 7% 15%",
   },
   Map:{
           width: "80%",
           marginLeft: "10%",
           marginTop: "100px",
+  },
+  TextArea:{
+          marginLeft: "20px",
+          marginRight: "20px",
+          width: "100%",
+          marginBottom: 20,
   }
-  
   }));
 function Contact() {
   const classes = useStyles();
     return(
         <div>
           <NavegationBar/>
+        <Container maxWidth="xl">
           <Box  className={classes.Map}>
             <Maps/>
             </Box>
@@ -97,12 +98,12 @@ function Contact() {
                       xs={12} 
                       sm={6} 
                       md={6}>
-                <Box mt={3} >
+                <Box mt={8} >
                   <Box className={classes.TitleBox}>  
                     <Typography className={classes.Typography} variant="h6">Ayemostartas</Typography><Divider/> 
                     </Box>
-                  <Box mb={1} ml={2.5} mr={2}>   
-                    <Typography variant="p">En nuestro local de Mataderos desayuná, almorzá, merendá y disfrutá de nuestra pastelería, postres, facturas y tortas. Y en nuestro nuevo local de Caballito podés llevar todas nuestras delicias y saborear un rico café.</Typography> 
+                  <Box mb={3} ml={2.5} mr={2}>   
+                    <Typography variant="body2">En nuestro local de Mataderos desayuná, almorzá, merendá y disfrutá de nuestra pastelería, postres, facturas y tortas. Y en nuestro nuevo local de Caballito podés llevar todas nuestras delicias y saborear un rico café.</Typography> 
                     </Box>
                   <Box className={classes.TitleBox}>
                     <Typography className={classes.Typography} variant="h6">Contactanos</Typography><Divider/> 
@@ -111,31 +112,31 @@ function Contact() {
                     <Box  className={classes.ContactList}>
                           <ListItem>
                             <StorefrontIcon className={classes.Icon}/> 
-                              <Box ml={0.5}><Typography variant="p">Alejandro Korn | Estacion</Typography></Box>
+                              <Typography variant="body2">Estacion</Typography>
                           </ListItem>               
                     </Box>
                     <Box className={classes.ContactList}>
                           <ListItem>
                             <WhatsAppIcon className={classes.Icon}/> 
-                              <Box ml={0.5}><Typography variant="p">WhatsApp: 1137900735</Typography></Box>
+                              <Typography variant="body2">1137900735</Typography>
                           </ListItem>
                     </Box>
                     <Box className={classes.ContactList}>
                           <ListItem>
                             <QueryBuilderIcon className={classes.Icon}/> 
-                              <Box ml={0.5}><Typography variant="p">Lunes a sabados 9 - 19hs</Typography></Box>
+                              <Typography variant="body2"> 9 - 19hs</Typography>
                           </ListItem>
                     </Box>
                     <Box className={classes.ContactList}>
                           <ListItem>
                             <FacebookIcon className={classes.Icon}/> 
-                              <Box ml={0.5}><Typography variant="p">Facebook: Ayemostartas</Typography></Box>
+                              <Typography variant="body2">Ayemostartas</Typography>
                           </ListItem>
                     </Box>
                     <Box  className={classes.ContactList}>
                           <ListItem>
                             <InstagramIcon className={classes.Icon}/> 
-                              <Box ml={0.5}><Typography variant="p">Instagram: Ayemostartas</Typography></Box>
+                              <Typography variant="body2"> Ayemostartas</Typography>
                           </ListItem>
                     </Box>
                   </Box>
@@ -145,36 +146,65 @@ function Contact() {
                     item xs={12} 
                     sm={6} 
                     md={6}>
-                    <Box m={0.5} mt={3} mb={3}>
+                    <Box mt={8} mb={12}>
                       <Box className={classes.TitleBox}>
                          <Typography className={classes.Typography} variant="h6">Envianos tu consulta</Typography><Divider/>  
                       </Box>
-                        <form className={classes.General} noValidate>
+                      <form 
+                      className={classes.General}           noValidate>                         
+                        <Grid 
+                           item xs={12}
+                           sm={6} 
+                           md={6}>
                           <FormControl className={classes.FormControl}>
-                            <label className={classes.Label} 
-                                   htmlFor="nombre">Nombre</label>
-                            <CssTextField/>
+                        
+                          <Box ml={2.5} mb={1.5}><Typography variant="body2">Nombre</Typography></Box>
+                            <NoSsr>
+                              <StyledTextField className={classes.TextField} variant="outlined" id="deterministic-outlined-input" size="small"/>
+                            </NoSsr>
                           </FormControl>
+                          </Grid>                
+                          <Grid 
+                            item xs={12} 
+                            sm={6} 
+                            md={6}>
                           <FormControl className={classes.FormControl}>
-                            <label className={classes.Label} 
-                                  htmlFor="nombre">Email</label>
-                            <CssTextField/>
+                          <Box ml={2.5} mb={1.5}><Typography variant="body2">Email</Typography></Box>  
+                            <NoSsr>
+                              <StyledTextField className={classes.TextField} variant="outlined" id="deterministic-outlined-input" size="small"/>
+                            </NoSsr>
                           </FormControl>
+                          </Grid>
+                          <Grid 
+                            item xs={12} 
+                            sm={6} 
+                            md={6}>
                           <FormControl className={classes.FormControl}>
-                            <label className={classes.Label}                htmlFor="nombre"> Telefono</label>
-                            <CssTextField/>
+                          <Box ml={2.5} mb={1.5}><Typography variant="body2">Telefono</Typography></Box>
+                            <NoSsr>
+                              <StyledTextField className={classes.TextField} variant="outlined" id="deterministic-outlined-input" size="small"/>
+                            </NoSsr>
                           </FormControl>
+                          </Grid>
+                          <Grid 
+                            item xs={12} 
+                            sm={6} 
+                            md={6}>
                           <FormControl className={classes.FormControl}>
-                            <label className={classes.Label} 
-                                   htmlFor="nombre">Asunto</label>
-                            <CssTextField/>
+                          <Box ml={2.5} mb={1.5}><Typography variant="body2">Asunto</Typography></Box>
+                            <NoSsr>
+                              <StyledTextField className={classes.TextField} variant="outlined" id="deterministic-outlined-input" size="small"/>
+                            </NoSsr>
                           </FormControl>
-                          <FormControl className={classes.FormControl}>
-                            <label className={classes.Label} 
-                                   htmlFor="nombre">Mensaje</label>
-                            <CssTextArea/>
+                          </Grid>                                                
+                          <FormControl className={classes.TextArea}>
+                            <Box mb={1.5}><Typography variant="body2">Mensaje</Typography></Box>
+                            <NoSsr>
+                              <StyledTextField variant="outlined" id="deterministic-outlined-input" multiline
+                              rows={6}/>
+                            </NoSsr>
                           </FormControl>
-                           
+                      
                          <box className={classes.Button}>
                           <Button variant="contained">Enviar
                           </Button>       
@@ -183,6 +213,7 @@ function Contact() {
                       </Box>    
                 </Grid>
             </Grid>
+            </Container> 
             <Footer/>
         </div>
     )

@@ -58,7 +58,7 @@ function Footer() {
         <Grid item xs={12} sm={4} md={4}>
             <Box mb={5} >
             <Box mb={2} ml={3}>
-                <Typography variant="h7">MEDIOS DE PAGO</Typography>
+                <Typography variant="body2">MEDIOS DE PAGO</Typography>
                 </Box>
              <List 
                 component="ul"
@@ -66,15 +66,15 @@ function Footer() {
                 disablePadding="true">
                 <ListItem>
                     <ArrowRightIcon fontSize="small" /> 
-                    <Box ml={0.5}><Typography variant="p">Mercado Pago</Typography></Box>
+                    <Box ml={0.5}><Typography variant="body2">Mercado Pago</Typography></Box>
                 </ListItem>
                 <ListItem>
                     <ArrowRightIcon fontSize="small" /> 
-                    <Box ml={0.5}><Typography variant="p">UALA transferencia</Typography></Box>
+                    <Box ml={0.5}><Typography variant="body2">UALA transferencia</Typography></Box>
                 </ListItem>
                 <ListItem>
                     <ArrowRightIcon fontSize="small" /> 
-                    <Box ml={0.5}><Typography variant="p">Efectivo</Typography></Box>
+                    <Box ml={0.5}><Typography variant="body2">Efectivo</Typography></Box>
                 </ListItem>
             </List>
             </Box>                    
@@ -82,7 +82,7 @@ function Footer() {
         <Grid item xs={12} sm={4} md={4}>   
         <Box mb={5} >   
             <Box mb={2} ml={2}>
-                <Typography variant="h7">CONTACTANOS</Typography>
+                <Typography variant="body2">CONTACTANOS</Typography>
                 </Box>
             <List 
                 component="ul"
@@ -90,19 +90,19 @@ function Footer() {
                 disablePadding="true">
                 <ListItem>
                     <RoomIcon fontSize="small" /> 
-                    <Box ml={0.5}><Typography variant="p">Alejandro Korn | Barrio la estacion</Typography></Box>
+                    <Box ml={0.5}><Typography variant="body2">Alejandro Korn | Barrio la estacion</Typography></Box>
                 </ListItem>
                 <ListItem>
                      <FacebookIcon fontSize="small" /> 
-                    <Box ml={0.5}><Typography variant="p">Ayemostartas</Typography></Box>
+                    <Box ml={0.5}><Typography variant="body2">Ayemostartas</Typography></Box>
                 </ListItem>
                 <ListItem>
                     <WhatsAppIcon fontSize="small" /> 
-                    <Box ml={0.5}><Typography variant="p">1137900735</Typography></Box>
+                    <Box ml={0.5}><Typography variant="body2">1137900735</Typography></Box>
                 </ListItem>
                 <ListItem>
                     <InstagramIcon fontSize="small" /> 
-                    <Box ml={0.5}><Typography variant="p">Ayemostartas</Typography></Box>
+                    <Box ml={0.5}><Typography variant="body2">Ayemostartas</Typography></Box>
                 </ListItem>
             </List>
             </Box> 
