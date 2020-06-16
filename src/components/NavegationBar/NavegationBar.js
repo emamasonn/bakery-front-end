@@ -5,7 +5,7 @@ import Divider from '@material-ui/core/Divider'
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
-import logo from '../assets/logo.png'
+import logo from '../../assets/logo.png'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import MenuIcon from '@material-ui/icons/Menu';
 import Hidden from '@material-ui/core/Hidden';
@@ -47,9 +47,11 @@ const useStyles = makeStyles(theme => ({
         margin: '0 10px'
     },
     logo: {
-        width: 150,
+        width: 75,
+        margin: 5,
+        borderRadius: "100%",
         ['@media (max-width:500px)']: {
-            width: 95,
+            width: 65,
         },
     },
     contentShopping: {
@@ -129,7 +131,7 @@ const NavegationBar = () => {
                                 </ListItem>
                                 <Divider />
                                 <ListItem button key='contacto'>
-                                    <Link to="/contacto" className={classes.linkTextBurger}>
+                                    <Link to="/Contact" className={classes.linkTextBurger}>
                                         <ListItemIcon><LocalMallIcon /></ListItemIcon>
                                         <ListItemText primary='Contacto'/>
                                     </Link>
@@ -142,7 +144,7 @@ const NavegationBar = () => {
             <Hidden xsDown>
                 <div>
                     <Link to="/" className={classes.linkText}>Tienda</Link>
-                    <Link to="/contacto" className={classes.linkText}>Contacto</Link>
+                    <Link to="/Contact" className={classes.linkText}>Contacto</Link>
                 </div>
             </Hidden>
             <div>
