@@ -8,7 +8,7 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import Untitled from './Untitled.png';
+import logo from '../../assets/logo.png';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
@@ -49,7 +49,7 @@ function Footer() {
      <Grid container>
         <Grid item xs={12} sm={4} md={4}>
             <Box textAlign="center" ml={1} mb={5} >
-                <img src={Untitled} alt="Untitled" className={classes.img}/>
+                <img src={logo} alt="logo" className={classes.img}/>
             </Box>
         </Grid>                
         <Grid item xs={12} sm={4} md={4}>

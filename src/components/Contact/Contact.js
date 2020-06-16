@@ -9,8 +9,6 @@ import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import Typography from '@material-ui/core/Typography';
-import Footer from './Footer/Footer';
-import NavegationBar from './NavegationBar';
 import Maps from './Map/Map';
 import Container from '@material-ui/core/Container';
 import Form from './ContactElements/Form';
@@ -35,7 +33,6 @@ function Contact() {
   const classes = useStyles();
     return(
     <div>
-      <NavegationBar/>
         <Container maxWidth="xl">
           <Box  className={classes.Map}>
             <Maps/>
@@ -76,7 +73,6 @@ function Contact() {
               </Grid>
             </Grid>
           </Container> 
-        <Footer/>
       </div>
     )
 }
