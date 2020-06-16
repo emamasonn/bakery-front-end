@@ -1,5 +1,5 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -19,8 +19,7 @@ const useStyle = makeStyles({
     direction: {
                 background: "#263238",
                 color: "#fff",
-                borderTop: "#263238 50px solid",
-            },
+                borderTop: "#263238 50px solid"},
     whatsApp: {
                 position:"fixed",
                 width:"60px",
@@ -28,21 +27,19 @@ const useStyle = makeStyles({
                 bottom:"40px",
                 right:"40px",
                 backgroundColor:"#25d366",
-                color:"#FFF",
+                color:"black",
                 borderRadius:"50px",
-                textAlign: "center",
-        },
+                textAlign: "center"},
     icon: {
-                fontSize: 12,
-        },
+                fontSize: 12},
     iconWhatsApp: {
-                fontSize: 25,
-        },
+                fontSize: 25},
     img: {
                 borderRadius: "50%",
                 width:"200px", 
-                height:"200px",
-    }
+                height:"200px"},
+    Title: {
+                margin:"0px 0px 15px 22px"}
       }
   );
 function Footer() {
@@ -51,15 +48,13 @@ function Footer() {
 <div className={classes.direction}>
      <Grid container>
         <Grid item xs={12} sm={4} md={4}>
-            <Box textAlign="center" p={0} ml={1} mb={5} >
+            <Box textAlign="center" ml={1} mb={5} >
                 <img src={Untitled} alt="Untitled" className={classes.img}/>
             </Box>
         </Grid>                
         <Grid item xs={12} sm={4} md={4}>
-            <Box mb={5} >
-            <Box mb={2} ml={3}>
-                <Typography variant="body2">MEDIOS DE PAGO</Typography>
-                </Box>
+            <Box mb={5}>
+                <Typography className={classes.Title} variant="body2">MEDIOS DE PAGO</Typography>
              <List 
                 component="ul"
                 dense="true" 
@@ -81,9 +76,7 @@ function Footer() {
         </Grid>
         <Grid item xs={12} sm={4} md={4}>   
         <Box mb={5} >   
-            <Box mb={2} ml={2}>
-                <Typography variant="body2">CONTACTANOS</Typography>
-                </Box>
+            <Typography className={classes.Title} variant="body2">CONTACTANOS</Typography>
             <List 
                 component="ul"
                 dense="true" 
@@ -108,12 +101,12 @@ function Footer() {
             </Box> 
         </Grid>
     </Grid>
-        <Button className={classes.whatsApp} href="https://wa.me/5491137900735/?text=Hola%20Ayemostartas...">
-            <WhatsAppIcon className={classes.iconWhatsapp}/>
-        </Button>                
+    <Button variant="contained" className={classes.whatsApp} href="https://wa.me/5491137900735/?text=Hola%20Ayemostartas...">
+        <WhatsAppIcon className={classes.iconWhatsapp}/>
+    </Button>                
     <Divider/>
     <Box  p={2} textAlign="center">
-        Copyright Ayemostartas <FavoriteBorderIcon className={classes.icon}/> - 2020. Desarrollado por krappy.
+        <Typography variant="body2">Copyright Ayemostartas <FavoriteBorderIcon className={classes.icon}/> - 2020. Desarrollado por Mayak.</Typography>
     </Box>
 </div>
 ) }
