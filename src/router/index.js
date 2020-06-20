@@ -2,21 +2,10 @@ import React from 'react';
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import NavegationBar from '../components/NavegationBar/NavegationBar';
 import Home from '../components/Home';
-import  makeStyles  from '@material-ui/core/styles/makeStyles';
 import Contact from '../components/Contact/Contact';
-import Footer from '../components/Footer/Footer' 
-
- /*const useStyles = makeStyles(theme => ({
-    root: {
-      flexGrow: 1,
-      background: '#263238',
-      color: '#fff',
-    },
-    tabtext: {
-      color: '#fff',
-      textDecoration: 'unset',
-    },
- }));*/
+import Footer from '../components/Footer/Footer';
+import ShoppingCart from '../components/ShoppingCart/ShoppingCart' 
+import OrderForm from '../components/OrderForm/OrderForm'
 
 export default function Router() {
   return (
@@ -25,6 +14,9 @@ export default function Router() {
         <Switch>
             <Route exact path={'/'} component={Home}/>
             <Route exact path='/Contact' component={Contact}/>
+            <Route exact path='/Contact' component={Contact}/>
+            <Route exact path='/ShoppingCart' component={ShoppingCart}/>
+            <Route exact path='/OrderForm' component={OrderForm}/>
         </Switch>
         <Footer/>
     </BrowserRouter>

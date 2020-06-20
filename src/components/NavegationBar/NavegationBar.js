@@ -14,6 +14,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
+import Typography from '@material-ui/core/Typography';
+import ListProductsCart from '../ListProductsCart/ListProductsCart'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -24,7 +26,7 @@ const useStyles = makeStyles(theme => ({
       justifyContent: 'space-between',
       alignItems: 'center',
       padding: '0 40px',
-      ['@media (max-width:500px)']: {
+      '@media (max-width:500px)': {
         padding: '0 10px',
     },
     },
@@ -50,7 +52,7 @@ const useStyles = makeStyles(theme => ({
         width: 75,
         margin: 5,
         borderRadius: "100%",
-        ['@media (max-width:500px)']: {
+        '@media (max-width:500px)': {
             width: 65,
         },
     },
@@ -66,13 +68,13 @@ const useStyles = makeStyles(theme => ({
     },
     textProduct: {
         margin: 0,
-        ['@media (max-width:500px)']: {
+        '@media (max-width:500px)': {
             fontSize: 13,
         },
     },
     textPrice: {
         margin: 0,
-        ['@media (max-width:500px)']: {
+        '@media (max-width:500px)': {
             fontSize: 16,
         },
     },
@@ -89,9 +91,21 @@ const useStyles = makeStyles(theme => ({
         marginRight: 20,
     },
     drawer: {
-        //background: '#101010',
         width: 300,
-    }
+    },
+    drawerShopping: {
+        width: 300,
+        background: '#101010',
+        height: '100%',
+        color: '#fff',
+    },
+    titleOrder: {
+        margin: '15px auto',
+        textAlign: 'center',
+    },
+    divider: {
+        background: '#ad172b',
+    },
 }));
 
 
@@ -99,6 +113,7 @@ const useStyles = makeStyles(theme => ({
 const NavegationBar = () => {
     const classes = useStyles();
     const [drawer, setDrawer] = useState(false);
+    const [drawerShopping, setDrawerShopping] = useState(false);
     window.onscroll = function() {handleScroll()};
 
     const handleScroll = () => {
@@ -113,6 +128,10 @@ const NavegationBar = () => {
 
     const toggleDrawer = () => {
         drawer ? setDrawer(false) : setDrawer(true)
+    }
+
+    const toggleDrawerShopping = () => {
+        drawerShopping ? setDrawerShopping(false) : setDrawerShopping(true)
     }
 
     return(
@@ -151,13 +170,23 @@ const NavegationBar = () => {
                 <Link to="/" ><img src={logo} className={classes.logo}/></Link>
             </div>
             <div className={classes.contentShopping}>
-                <ShoppingCartIcon />
+                <ShoppingCartIcon onClick={toggleDrawerShopping}/>
                 <Divider orientation="vertical" flexItem className={classes.dividerShopping}/>
                 <div>
                     <p className={classes.textPrice}>$0.00</p>
                     <p className={classes.textProduct}>0 Productos</p>
                 </div>
-
+                <Drawer 
+                    open={drawerShopping} 
+                    onClick={toggleDrawerShopping}  
+                    anchor='right'
+                >
+                    <div className={classes.drawerShopping}>
+                        <Typography variant="h6" className={ classes.titleOrder}>MI PEDIDO</Typography>
+                        <Divider className={classes.divider}/>
+                        <ListProductsCart />
+                    </div>
+                </Drawer>
             </div>
         </AppBar>
     )
