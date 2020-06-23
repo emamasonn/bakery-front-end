@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import NavegationBar from "../components/NavegationBar/NavegationBar";
-import Home from "../components/Home";
+import Store from "../components/Store";
 import Contact from "../components/Contact/Contact";
 import Footer from "../components/Footer/Footer";
 import ShoppingCart from "../components/ShoppingCart/ShoppingCart";
@@ -12,7 +12,7 @@ export default function Router() {
     <BrowserRouter>
       <NavegationBar />
       <Switch>
-        <Route exact path={"/"} component={Home} />
+        <Route exact path={"/"} component={Store} />
         <Route exact path="/Contact" component={Contact} />
         <Route exact path="/ShoppingCart" component={ShoppingCart} />
         <Route exact path="/OrderForm" component={OrderForm} />

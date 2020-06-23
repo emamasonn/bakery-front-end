@@ -82,6 +82,7 @@ const Categories = () => {
       </div>
       </div>
       <Divider />
+      
       <div className={classes.contentCategories}>
         <Typography variant="h6" className={classes.titleCategories}>Categorías</Typography>
         <List>
