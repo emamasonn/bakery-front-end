@@ -3,40 +3,52 @@ import { makeStyles } from "@material-ui/core/styles";
 import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import { Grid, Typography } from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
-import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
-import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 
 const useStyle = makeStyles({
-  contentHome: {
-    height: 500,
-    marginTop: 200,
+  contentSearch: {
+    marginBottom: 30,
   },
-  padding: {
-    paddingTop: "20px",
-    paddingBottom: "50px",
+  titleSearch: {
+    marginBottom: 19,
+    fontSize: 19,
   },
-  margin: {
-    marginTop: "25px",
-    marginBottom: "25px",
+  search:{
+    position: 'relative',
   },
-  root: {
-    "& > *": {
-      width: "25ch",
+  inputRoot: {
+    border: '1px solid #ad172b',
+    borderRadius: 4,
+    padding: 5,
+    height: 40,
+    borderRadius: 4,
+    width: '100%',
+  },
+  buttonSearch: {
+    position: 'absolute',
+    right: 1,
+    top: 1,
+    padding: '3px 0',
+    background: '#fff',
+    '&:hover':{
+      background: '#fff',
     },
   },
-  iconButton: {
-    padding: 10,
+  iconSearch: {
+    fontSize: 30,
+    color: '#ad172b',
+    '&:hover': {
+      color: '#dd2c00',
+    },
   },
-  paper: {
-    padding: "2px 4px",
-    display: "flex",
-    alignItems: "center",
-    width: "100%",
-    marginBottom: "50px",
+  contentCategories: {
+    marginTop: 30,
+  },
+  titleCategories: {
+    fontSize: 19,
   },
 });
 
@@ -54,57 +66,33 @@ const Categories = () => {
   const classes = useStyle();
 
   return (
-    <Grid container className={classes.padding}>
-      <Paper component="form" className={classes.paper}>
+    <React.Fragment>
+      <div className={classes.contentSearch}>
+      <Typography variant='h6' className={classes.titleSearch}>Buscar Producto</Typography>
+      <div className={classes.search}>
         <InputBase
-          placeholder="Buscar productos:"
-          inputProps={{ "aria-label": "Buscar productos" }}
+          placeholder="Buscar..."
+          inputProps={{ "aria-label": "Buscar" }}
+          classes={{
+            root: classes.inputRoot,
+            input: classes.inputInput,
+          }}
         />
-        <IconButton
-          type="submit"
-          className={classes.iconButton}
-          aria-label="search"
-        >
-          <SearchIcon />
-        </IconButton>
-      </Paper>
-      <Grid item>
-        <Typography variant="h6">Categorias</Typography>
-        <List component="nav">
+        <Button className={classes.buttonSearch}><SearchIcon className={classes.iconSearch}/></Button>
+      </div>
+      </div>
+      <Divider />
+      <div className={classes.contentCategories}>
+        <Typography variant="h6" className={classes.titleCategories}>Categorías</Typography>
+        <List>
           {categories.map((category, index) => (
-            <React.Fragment>
-              <ListItem button key={index}>
-                {category.name}
-              </ListItem>
-              <Divider />
-            </React.Fragment>
+            <ListItem button key={index}>
+              <Typography variant="body2">{category.name}</Typography>
+            </ListItem>
           ))}
         </List>
-      </Grid>
-    </Grid>
-
-    /* // <div>
-    //     <>
-    //         {/* Aca tenes que agregar el buscador con el titulo
-
-    //             https://material-ui.com/components/text-fields/ (buscador)
-    //             https://material-ui.com/components/typography/ (titulos)
-
-    //         
-    //     <Divider />
-    //     <div>
-
-    //         <List component="nav">
-    //             {
-    //                 categories.map((category, index)=>(
-    //                     <ListItem button key={index}>
-    //                         {category.name}
-    //                     </ListItem>
-    //                 ))
-    //             }
-    //         </List>
-    //     </div>
-    // </div> */
+      </div>
+    </React.Fragment>
   );
 };
 

@@ -14,19 +14,42 @@ import { findByLabelText } from "@testing-library/react";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 300,
+    margin: '0 5px 40px 5px',
+    '@media (max-width:600px)': {
+      margin: '0 auto 40px auto',
+    }
   },
   icon: {
-    marginRight: 100,
+    //marginRight: 100,
   },
   padding: {
     padding: 5,
   },
   cardAction: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "0 10px",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    margin: 10,
+  },
+  action: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  nameProduct: {
+    fontSize: 15,
+  },
+  buttonDetail: {
+    fontSize: 15,
+  },
+  priceProduct: {
+
+  },
+  shoppingCart: {
+
   },
 });
 
@@ -43,27 +66,21 @@ const ProductCard = () => {
           image={ProductImage}
           title="Contemplative Reptile"
         />
-        <CardContent className={classes.padding}>
-          <Typography
-            className={classes.padding}
-            variant="body1"
-            component="h3"
-          >
-            Tortita Rica
-          </Typography>
-        </CardContent>
       </CardActionArea>
       <div className={classes.cardAction}>
-        <Typography color="secondary">$300</Typography>
-        <CardActions className={classes.padding}>
-          <IconButton
+        <div className={classes.action}>
+          <Typography className={classes.nameProduct}>Nombre del producto</Typography>
+          <Button className={classes.buttonDetail}>Detalle</Button>
+        </div>
+        <div className={classes.action}>
+          <Typography color="secondary">$300</Typography>
+          <Button
             className={classes.icon}
             color="primary"
-            className={classes.padding}
           >
             <ShoppingCartRoundedIcon />
-          </IconButton>
-        </CardActions>
+          </Button>
+        </div>
       </div>
     </Card>
   );
