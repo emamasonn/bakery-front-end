@@ -152,7 +152,7 @@ const OrderForm = ()=> {
             <TextField
                 className={classes.textFile}
                 id="standard-multiline-static"
-                label="Nota del pedido"
+                label="Fecha y horario de entrega"
                 variant="outlined"
                 multiline
                 rows={6}

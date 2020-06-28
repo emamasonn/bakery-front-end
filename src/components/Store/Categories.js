@@ -20,7 +20,7 @@ const useStyle = makeStyles({
     position: 'relative',
   },
   inputRoot: {
-    border: '1px solid #ad172b',
+    border: '2px solid #eeeeee',
     borderRadius: 4,
     padding: 5,
     height: 40,
@@ -29,8 +29,8 @@ const useStyle = makeStyles({
   },
   buttonSearch: {
     position: 'absolute',
-    right: 1,
-    top: 1,
+    right: 2,
+    top: 2,
     padding: '3px 0',
     background: '#fff',
     '&:hover':{
@@ -39,9 +39,9 @@ const useStyle = makeStyles({
   },
   iconSearch: {
     fontSize: 30,
-    color: '#ad172b',
+    color: '#eeeeee',
     '&:hover': {
-      color: '#dd2c00',
+      color: '#ad172b',
     },
   },
   contentCategories: {
@@ -50,6 +50,9 @@ const useStyle = makeStyles({
   titleCategories: {
     fontSize: 19,
   },
+  itemCategory: {
+    paddingLeft: 0,
+  }
 });
 
 const categories = [
@@ -87,7 +90,7 @@ const Categories = () => {
         <Typography variant="h6" className={classes.titleCategories}>Categorías</Typography>
         <List>
           {categories.map((category, index) => (
-            <ListItem button key={index}>
+            <ListItem button key={index} className={classes.itemCategory}>
               <Typography variant="body2">{category.name}</Typography>
             </ListItem>
           ))}
