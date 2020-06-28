@@ -11,11 +11,11 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Hidden from '@material-ui/core/Hidden';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import LocalMallIcon from '@material-ui/icons/LocalMall';
 import Typography from '@material-ui/core/Typography';
 import ListProductsCart from '../ListProductsCart/ListProductsCart'
+import FacebookIcon from '@material-ui/icons/Facebook';
+import InstagramIcon from '@material-ui/icons/Instagram';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -46,7 +46,8 @@ const useStyles = makeStyles(theme => ({
         color: '#fff',
         textDecoration: 'none',
         fontSize: 20,
-        margin: '0 10px'
+        margin: '0 10px',
+        display: 'flex',
     },
     logo: {
         width: 75,
@@ -89,9 +90,12 @@ const useStyles = makeStyles(theme => ({
         textDecoration: 'none',
         color: '#263238',
         marginRight: 20,
+        color: '#fff',
     },
     drawer: {
-        width: 300,
+        width: 200,
+        background: '#101010',
+        height: '100%',
     },
     drawerShopping: {
         width: 300,
@@ -105,6 +109,24 @@ const useStyles = makeStyles(theme => ({
     },
     divider: {
         background: '#ad172b',
+    },
+    dividerMenu: {
+        background: '#616161',
+    },
+    contentLinkNavegation: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+    },
+    redesSocial:{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 20,
+    },
+    linkSocial: {
+        color: '#fff',
+        margin: 5,
     },
 }));
 
@@ -140,28 +162,34 @@ const NavegationBar = () => {
                 <div>
                     <Button onClick={toggleDrawer} className={classes.buttonBurger}><MenuIcon /></Button>
                     <Drawer open={drawer} onClick={toggleDrawer} className={classes.drawer}>
-                        <div onClick={toggleDrawer}>
+                        <div onClick={toggleDrawer} className={classes.drawer}>
+                            <div className={classes.redesSocial}>
+                                <Link to="https://www.facebook.com/" className={classes.linkSocial}><FacebookIcon/></Link>
+                                <Link to="https://www.instagram.com" className={classes.linkSocial}><InstagramIcon/></Link>
+                            </div>
                             <List>
                                 <ListItem button key='tienda'>
                                     <Link to="/" className={classes.linkTextBurger}>
-                                        <ListItemIcon><LocalMallIcon /></ListItemIcon>
                                         <ListItemText primary='Tienda'/>
                                     </Link>
                                 </ListItem>
-                                <Divider />
+                                <Divider className={classes.dividerMenu}/>
                                 <ListItem button key='contacto'>
                                     <Link to="/Contact" className={classes.linkTextBurger}>
-                                        <ListItemIcon><LocalMallIcon /></ListItemIcon>
                                         <ListItemText primary='Contacto'/>
                                     </Link>
                                 </ListItem>
+                                <Divider className={classes.dividerMenu}/>
                             </List>
                         </div>
                     </Drawer>
                 </div>
             </Hidden>
             <Hidden xsDown>
-                <div>
+                <div className={classes.contentLinkNavegation}>
+                    <Link to="https://www.facebook.com/" className={classes.linkText}><FacebookIcon/></Link>
+                    <Link to="https://www.instagram.com" className={classes.linkText}><InstagramIcon/></Link>
+                    <Divider orientation="vertical" flexItem className={classes.dividerShopping}/>
                     <Link to="/" className={classes.linkText}>Tienda</Link>
                     <Link to="/Contact" className={classes.linkText}>Contacto</Link>
                 </div>

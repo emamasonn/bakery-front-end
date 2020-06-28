@@ -14,7 +14,7 @@ import Products from "./Products";
 
 const useStyle = makeStyles({
   contentGrid: {
-    marginTop: 180,
+    marginTop: 160,
     '@media (max-width:600px)': {
       marginTop: 100,
     }
@@ -58,6 +58,16 @@ const useStyle = makeStyles({
   iconFilter: {
     fontSize: 30,
   },
+  titleStore: {
+    fontFamily: "Dancing Script, cursive",
+    display: 'flex',
+    justifyContent: 'center',
+    color: "#ad172b",
+    marginBottom: 50,
+    '@media (max-width:600px)': {
+      fontSize: 40,
+    }
+  }
 });
 
 const Home = () => {
@@ -72,6 +82,7 @@ const Home = () => {
 
   return (
     <Container className={classes.contentGrid}>
+      <Typography variant='h3' className={classes.titleStore}>Nuestra Productos</Typography>
       <Grid container spacing={4}>
         <Hidden smUp>
           <div className={classes.contentFilter}>
