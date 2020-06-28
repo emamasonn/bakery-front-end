@@ -72,7 +72,7 @@ const Home = () => {
 
   return (
     <Container className={classes.contentGrid}>
-      <Grid container>
+      <Grid container spacing={4}>
         <Hidden smUp>
           <div className={classes.contentFilter}>
             <Button onClick={toggleDrawer} className={classes.filterButton}><ListIcon className={classes.iconFilter}/></Button>

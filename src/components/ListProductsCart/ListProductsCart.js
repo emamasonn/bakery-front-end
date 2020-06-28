@@ -119,7 +119,7 @@ const ListProductsCart = (props) => {
     } 
     return (
         <React.Fragment>
-            {productsEmptyCart()}
+            {productsInCart(0)}
 
         </React.Fragment>
   );

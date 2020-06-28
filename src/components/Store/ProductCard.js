@@ -6,19 +6,30 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import ShoppingCartRoundedIcon from "@material-ui/icons/ShoppingCartRounded";
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import ModalDetailProduct from '../ModalDetailProduct/ModalDeatilProduct'
+import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 300,
+    maxWidth: 250,
     margin: '0 5px 40px 5px',
     '@media (max-width:600px)': {
-      margin: '0 auto 40px auto',
+      margin: '0 7px 20px 7px',
+    }
+  },
+  imgProduct:{
+    '@media (max-width:600px)': {
+      height: 170,
     }
   },
   icon: {
-    //marginRight: 100,
+    padding: 0,
+    minWidth: 'min-content',
+    color: '#ad172b',
+    '&:hover':{
+      color: '#d32f2f',
+    }
   },
   padding: {
     padding: 5,
@@ -26,27 +37,46 @@ const useStyles = makeStyles({
   cardAction: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     flexDirection: 'column',
-    margin: 10,
+    margin: 7,
   },
   action: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     width: '100%',
+    marginTop: 2,
   },
   nameProduct: {
-    fontSize: 15,
+    fontSize: 13,
+  },
+  cardActionArea: {
+    position: 'relative',
   },
   buttonDetail: {
-    fontSize: 15,
+    position: 'absolute',
+    top: 7,
+    right: 7,
+    background: 'red',
+    fontSize: 12,
+    padding: 0,
+    borderRadius: '100%',
+    background: '#eeeeee',
+    minWidth: 'unset',
+    height: 40,
+    width: 40,
+    '&:hover':{
+      color: '#ad172b',
+      background: '#fafafa',
+    }
   },
   priceProduct: {
-
-  },
-  shoppingCart: {
-
+    marginLeft: 5,
+    fontSize: 15,
+    '&:hover':{
+      color: '#ad172b',
+    }
   },
 });
 
@@ -65,28 +95,27 @@ const ProductCard = () => {
   return (
     <React.Fragment>
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea className={classes.cardActionArea}>
         <CardMedia
+          className={classes.imgProduct}
           component="img"
-          alt="Contemplative Reptile"
-          height="300"
+          alt="Image product"
           image={ProductImage}
-          title="Contemplative Reptile"
+          title="Image Product"
         />
+        <Button className={classes.buttonDetail} onClick={handleOpenModal}><SearchIcon /></Button>
       </CardActionArea>
       <div className={classes.cardAction}>
-        <div className={classes.action}>
+        
           <Typography className={classes.nameProduct}>Nombre del producto</Typography>
-          <Button className={classes.buttonDetail} onClick={handleOpenModal}>Detalle</Button>
-        </div>
+        
         <div className={classes.action}>
-          <Typography color="secondary">$300</Typography>
           <Button
             className={classes.icon}
-            color="primary"
           >
-            <ShoppingCartRoundedIcon />
+            <AddShoppingCartIcon />
           </Button>
+          <Typography className={classes.priceProduct}>$300</Typography>
         </div>
       </div>
     </Card>
