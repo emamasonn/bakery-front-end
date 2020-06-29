@@ -11,6 +11,7 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ListIcon from '@material-ui/icons/List';
 import Categories from "./Categories";
 import Products from "./Products";
+import Pagination from '@material-ui/lab/Pagination';
 
 const useStyle = makeStyles({
   contentGrid: {
@@ -67,7 +68,15 @@ const useStyle = makeStyles({
     '@media (max-width:600px)': {
       fontSize: 40,
     }
-  }
+  },
+  contentPagination: {
+    margin: 'auto',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 50,
+    padding: 0,
+  },
 });
 
 const Home = () => {
@@ -82,7 +91,7 @@ const Home = () => {
 
   return (
     <Container className={classes.contentGrid}>
-      <Typography variant='h3' className={classes.titleStore}>Nuestra Productos</Typography>
+      <Typography variant='h3' className={classes.titleStore}>Nuestros Productos</Typography>
       <Grid container spacing={4}>
         <Hidden smUp>
           <div className={classes.contentFilter}>
@@ -104,6 +113,9 @@ const Home = () => {
         </Hidden>
         <Grid item sm={9} md={10} xs={12} className={classes.contentProducts}>
           <Products />
+        </Grid>
+        <Grid item xs={12} className={classes.contentPagination}>
+          <Pagination count={120} size="small"/>
         </Grid>
       </Grid>
     </Container>
