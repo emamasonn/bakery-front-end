@@ -85,7 +85,7 @@ const useStyles = makeStyles({
 const ProductCard = ({ dataProduct, addProduct }) => {
   const classes = useStyles();
   const [openModal, setOpenModal] = useState(false);
-  const { name, priceUni, _id } = dataProduct
+  const { name, priceUni } = dataProduct
 
   const handleOpenModal = () => {
     setOpenModal(true);

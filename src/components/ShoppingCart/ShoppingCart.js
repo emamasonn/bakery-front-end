@@ -6,7 +6,6 @@ import Button from '@material-ui/core/Button';
 import { Link } from "react-router-dom";
 import RowProduct from './RowProduct';
 import { connect } from 'react-redux';
-import Product from '../ListProductsCart/Product';
 
 const useStyles = makeStyles({
     contentTable:{

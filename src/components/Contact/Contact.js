@@ -15,26 +15,27 @@ import Form from './ContactElements/Form';
 import TitleBox from './ContactElements/TitleBox';
 
 const useStyles = makeStyles(({  
-  General:{
+  general:{
           display: "flex",
           flexFlow: "row wrap"},
-  ContactList:{
+  contactList:{
           width: "50%",
           marginBottom:20},
-  Icon:{
+  icon:{
           fontSize: "230%",
           color: "#ad172b",
           margin: "0px 5px 20px 0px"},
-  Map:{
+  map:{
           width: "80%",
           margin: "100px 0px 0px 10%"},
   }));
-function Contact() {
+
+const Contact = () => {
   const classes = useStyles();
     return(
     <div>
         <Container maxWidth="xl">
-          <Box  className={classes.Map}>
+          <Box  className={classes.map}>
             <Maps/>
           </Box>
           <Grid container>     
@@ -45,18 +46,18 @@ function Contact() {
                     <Typography variant="body2">En nuestro local de Mataderos desayuná, almorzá, merendá y disfrutá de nuestra pastelería, postres, facturas y tortas. Y en nuestro nuevo local de Caballito podés llevar todas nuestras delicias y saborear un rico café.</Typography> 
                     </Box>
                   <TitleBox>Contactanos</TitleBox>
-                  <Box className={classes.General}>
+                  <Box className={classes.general}>
                       <ListItem>
-                        <StorefrontIcon className={classes.Icon}/>
-                        <Typography className={classes.ContactList}  variant="body2">Estacion </Typography>
-                        <WhatsAppIcon className={classes.Icon}/> 
-                        <Typography className={classes.ContactList} variant="body2">1137900735</Typography>
+                        <StorefrontIcon className={classes.icon}/>
+                        <Typography className={classes.contactList}  variant="body2">Estacion </Typography>
+                        <WhatsAppIcon className={classes.icon}/> 
+                        <Typography className={classes.contactList} variant="body2">1137900735</Typography>
                       </ListItem>         
                       <ListItem>
-                        <QueryBuilderIcon className={classes.Icon}/> 
-                        <Typography className={classes.ContactList} variant="body2"> 9 - 19hs</Typography>
-                        <FacebookIcon className={classes.Icon}/> 
-                        <Typography className={classes.ContactList} variant="body2">Ayemostartas</Typography>
+                        <QueryBuilderIcon className={classes.icon}/> 
+                        <Typography className={classes.contactList} variant="body2"> 9 - 19hs</Typography>
+                        <FacebookIcon className={classes.icon}/> 
+                        <Typography className={classes.contactList} variant="body2">Ayemostartas</Typography>
                       </ListItem>
                       <ListItem>
                         <InstagramIcon className={classes.Icon}/> 

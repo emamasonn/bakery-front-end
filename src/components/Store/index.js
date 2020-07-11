@@ -14,6 +14,7 @@ import Products from "./Products";
 import Pagination from '@material-ui/lab/Pagination';
 import { connect } from 'react-redux';
 import { loadProducts, loadCategories } from '../../redux/actions/actions'
+import { env_app } from '../../config/config'
 import axios from 'axios'
 
 const useStyle = makeStyles({
@@ -92,21 +93,20 @@ const Store = ({ loadProducts, loadCategories }) => {
   };
 
   useEffect(() => {
-    axios.get('http://localhost:3000/product/')
+    
+    axios.get(`${ env_app.URL_API }/product`)
       .then( (resp) => {
         let products = resp.data.product
         loadProducts(products)
-        console.log(resp.data.product)
       })
       .catch( (error) => {
         console.log(error)
       })
 
-      axios.get('http://localhost:3000/category/')
+      axios.get(`${ env_app.URL_API }/category`)
       .then( (resp) => {
         let categories = resp.data.categories
         loadCategories(categories)
-        console.log(resp.data.categories)
       })
       .catch( (error) => {
         console.log(error)
