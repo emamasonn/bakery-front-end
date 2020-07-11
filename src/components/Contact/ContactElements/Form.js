@@ -80,7 +80,6 @@ const FormContact = () => {
     const sendMessageApi = (data) => {
         axios.post(`${ env_app.URL_API }/message`, data)
           .then((resp) =>{
-            console.log(resp);
             setModalMessage({open: true, error: false})
             document.getElementById('id-form-contact').reset()
             setTimeout(() => {
@@ -109,7 +108,7 @@ const FormContact = () => {
     }
 
     const handleCloseModalMessage = () => {
-        setModalMessage(false)
+        setModalMessage({open: false, error: false})
     };
 
     return (
