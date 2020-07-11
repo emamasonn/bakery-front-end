@@ -4,10 +4,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-
 
 const useStyles = makeStyles(({  
     containerForm: {
@@ -94,7 +91,6 @@ const OrderForm = ()=> {
     return (
     <Container maxWidth='lg' className={classes.containerForm}>
         <Typography variant='h4' className={classes.titleFormOrder}>Detalle del Pedido</Typography>
-        <Divider />
         <Paper elevation={0} className={classes.paper}>
         <form className={classes.formOrder}>                         
             <div className={classes.contentName}>
@@ -148,7 +144,6 @@ const OrderForm = ()=> {
                 variant="outlined"
                 size="small" 
             />
-            <Divider />
             <TextField
                 className={classes.textFile}
                 id="standard-multiline-static"

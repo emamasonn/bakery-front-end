@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
@@ -7,6 +7,9 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
+import { connect } from 'react-redux';
+import { searchProduct } from '../../redux/actions/actions'
+import axios from 'axios'
 
 const useStyle = makeStyles({
   contentSearch: {
@@ -55,18 +58,46 @@ const useStyle = makeStyles({
   }
 });
 
-const categories = [
-  { name: "Category neme" },
-  { name: "Category neme" },
-  { name: "Category neme" },
-  { name: "Category neme" },
-  { name: "Category neme" },
-  { name: "Category neme" },
-  { name: "Category neme" },
-];
-
-const Categories = () => {
+const Categories = ({ categories, searchProduct }) => {
   const classes = useStyle();
+  const [valueSearch, setValueSearch] = useState()
+
+  const getSearchProduct = (termino) => {
+    axios.get(`http://localhost:3000/product/search/${ termino }`)
+      .then( (resp) => {
+        console.log(resp)
+        let product = resp.data.product
+        searchProduct(product)
+      })
+      .catch( (error) => {
+        console.log(error)
+      })
+  }
+
+  const getFindCategory = (category) => {
+    axios.get(`http://localhost:3000/product/find/${ category }`)
+      .then( (resp) => {
+        console.log(resp)
+        let product = resp.data.product
+        searchProduct(product)
+      })
+      .catch( (error) => {
+        console.log(error)
+      })
+  }
+
+  const handlerSearchProduct = () => {
+    getSearchProduct(valueSearch)
+  }
+
+  const handleValueSearch = (event) => {
+    let value = event.target.value
+    setValueSearch(value)
+  }
+
+  const handleFindCategory = (category) => {
+    getFindCategory(category)
+  }
 
   return (
     <React.Fragment>
@@ -76,12 +107,13 @@ const Categories = () => {
         <InputBase
           placeholder="Buscar..."
           inputProps={{ "aria-label": "Buscar" }}
+          onChange={handleValueSearch}
           classes={{
             root: classes.inputRoot,
             input: classes.inputInput,
           }}
         />
-        <Button className={classes.buttonSearch}><SearchIcon className={classes.iconSearch}/></Button>
+        <Button className={classes.buttonSearch} onClick={handlerSearchProduct}><SearchIcon className={classes.iconSearch}/></Button>
       </div>
       </div>
       <Divider />
@@ -90,7 +122,12 @@ const Categories = () => {
         <Typography variant="h6" className={classes.titleCategories}>Categorías</Typography>
         <List>
           {categories.map((category, index) => (
-            <ListItem button key={index} className={classes.itemCategory}>
+            <ListItem 
+              button 
+              key={index} 
+              className={classes.itemCategory} 
+              onClick={() => handleFindCategory(category.name)} 
+            >
               <Typography variant="body2">{category.name}</Typography>
             </ListItem>
           ))}
@@ -100,4 +137,14 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+const mapStateToProps = state => ({
+  categories: state.startReducer.categories
+})
+
+const mapDispatchToProps = dispatch => ({
+  searchProduct: (data) => {
+    dispatch(searchProduct(data))
+  },
+})
+
+export default connect( mapStateToProps, mapDispatchToProps )(Categories);

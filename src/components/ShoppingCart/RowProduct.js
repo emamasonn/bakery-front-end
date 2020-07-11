@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
+import { connect } from 'react-redux';
+import { addOrderProduct, deleteProduct, subtractOrderProduct } from '../../redux/actions/actions'
 
 const useStyles = makeStyles({
     trTable: {
@@ -127,31 +129,75 @@ const useStyles = makeStyles({
         },
     },
 });
-const RowProduct = () => {
+const RowProduct = ({ product, deleteProduct, subtractOrderProduct, addOrderProduct }) => {
     const classes = useStyles();
+    const { name, priceUni, quality, _id } = product
+
+    const total = quality * priceUni
+
+    const handleDeleteProduct = (id) => {
+        deleteProduct(id)
+    }
+
+    const handleSubtractOrderProduct = (id) => {
+        if(quality > 1){
+            subtractOrderProduct(id)
+        }
+    }
+
+    const handleAddOrderProduct = (id) => {
+        addOrderProduct(id)
+    }
 
     return(
         <tr className={classes.trTable}>
             <td className={classes.deleteIcon}>
-                <Button className={classes.buttonDeleteIcon}><DeleteForeverIcon /></Button>
+                <Button 
+                    className={classes.buttonDeleteIcon} 
+                    onClick={() => handleDeleteProduct(_id)}
+                >
+                    <DeleteForeverIcon />
+                </Button>
             </td>
             <td className={classes.tdImg}>
                 <img className={classes.productImg} src='https://www.cocinacaserayfacil.net/wp-content/uploads/2019/11/Comida-francesa.jpg'/>
             </td>
             <td className={classes.tdNameProduct}>
-                <Typography variant='body2'>Nombre del producto</Typography>
+                <Typography variant='body2'>{ name }</Typography>
             </td>
-            <td className={classes.tdPrice} data-title='Precio'>$1,090.00</td>
+            <td className={classes.tdPrice} data-title='Precio'>{`$ ${ priceUni }`}</td>
             <td className={classes.tdQuantity} data-title='Cantidad'>
                 <div className={classes.quantity}>
-                    <Button className={classes.removeIcon}><RemoveIcon className={classes.icon}/></Button>
-                    <Typography variant='body2' className={classes.quantityNumber}>1</Typography>
-                    <Button className={classes.addIcon}><AddIcon className={classes.icon}/></Button>
+                    <Button 
+                        className={classes.removeIcon} 
+                        onClick={() => handleSubtractOrderProduct(_id)}
+                    >
+                        <RemoveIcon className={classes.icon}/>
+                    </Button>
+                    <Typography variant='body2' className={classes.quantityNumber}>{ quality }</Typography>
+                    <Button 
+                        className={classes.addIcon}
+                        onClick={() => handleAddOrderProduct(_id)}
+                    >
+                        <AddIcon className={classes.icon}/>
+                    </Button>
                 </div>
             </td>
-            <td className={classes.tdTotal} data-title='Total'>$1,090.00</td>
+            <td className={classes.tdTotal} data-title='Total'>{`$ ${ total }`}</td>
         </tr>
     )
 }
 
-export default RowProduct;
+const mapDispatchToProps = dispatch => ({
+    deleteProduct: (id) => {
+      dispatch(deleteProduct(id))
+    },
+    addOrderProduct: (id) => {
+        dispatch(addOrderProduct(id))
+    },
+    subtractOrderProduct: (id) => {
+        dispatch(subtractOrderProduct(id))
+    }
+})
+  
+export default connect( null, mapDispatchToProps )(RowProduct);

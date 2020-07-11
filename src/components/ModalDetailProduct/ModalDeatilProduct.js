@@ -8,6 +8,8 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import CloseIcon from '@material-ui/icons/Close';
 import ProductImage from "../../assets/productimage.jpg";
+import { connect } from 'react-redux';
+import { addProduct } from '../../redux/actions/actions'
 
 const useStyles = makeStyles({
   modal: {
@@ -58,6 +60,10 @@ const useStyles = makeStyles({
   },
   detailProduct: {
     marginBottom: 15,
+    paddingRight: 80,
+    '@media (max-width:600px)': {
+      paddingRight: 0,
+  },
   },
   buttonProduct: {
     marginTop: 30,
@@ -79,8 +85,17 @@ const useStyles = makeStyles({
   },
 });
 
-const ModalDetailProduct = ({open, handleClose}) => {
-    const classes = useStyles();
+const ModalDetailProduct = ({ open, handleClose, data, addProduct }) => {
+    const classes = useStyles(); 
+    
+    const handleAddProduct = () => {
+      let product = {
+        ...data,
+        quality: 1,
+      }
+      addProduct(product)
+      handleClose()
+    }
 
     return(
         <Modal
@@ -106,12 +121,14 @@ const ModalDetailProduct = ({open, handleClose}) => {
                 </Grid>
                 <Grid xs={12} sm={7}>
                     <div className={classes.contentDetail}>
-                        <Typography variant='h4' className={classes.titleProduct}>Alsaciana de Maracuyá</Typography>
-                        <Typography variant='h5' className={classes.priceProduct}>$1,090.00</Typography>
-                        <Typography variant='body2' className={classes.priceDetail}>
-                            Suave bizcocho de chocolate y nueces, esponjoso de maracuya y cubierta con reduccion de maracuya
+                        <Typography variant='h4' className={classes.titleProduct}>{ data.name}</Typography>
+                        <Typography variant='h5' className={classes.priceProduct}>{`$ ${ data.priceUni}`}</Typography>
+                        <Typography variant='body2' className={classes.detailProduct}>
+                            { data.description }
                         </Typography>
-                        <div className={classes.contentButton}><Button className={classes.buttonProduct}>Comprar</Button></div>
+                        <div className={classes.contentButton}>
+                          <Button className={classes.buttonProduct} onClick={handleAddProduct}>Comprar</Button>
+                        </div>
                     </div>
                 </Grid>
             </Grid>
@@ -121,4 +138,10 @@ const ModalDetailProduct = ({open, handleClose}) => {
     )
 }
 
-export default ModalDetailProduct;
+const mapDispatchToProps = dispatch => ({
+  addProduct: (product) => {
+    dispatch(addProduct(product))
+  },
+})
+
+export default connect( null, mapDispatchToProps )(ModalDetailProduct);
