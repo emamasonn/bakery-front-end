@@ -9,6 +9,8 @@ import Typography from "@material-ui/core/Typography";
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import ModalDetailProduct from '../ModalDetailProduct/ModalDeatilProduct'
 import SearchIcon from '@material-ui/icons/Search';
+import { connect } from 'react-redux';
+import { addProduct } from '../../redux/actions/actions'
 
 const useStyles = makeStyles({
   root: {
@@ -80,9 +82,10 @@ const useStyles = makeStyles({
   },
 });
 
-const ProductCard = () => {
+const ProductCard = ({ dataProduct, addProduct }) => {
   const classes = useStyles();
   const [openModal, setOpenModal] = useState(false);
+  const { name, priceUni, _id } = dataProduct
 
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -91,6 +94,14 @@ const ProductCard = () => {
   const handleCloseModal = () => {
     setOpenModal(false);
   };
+
+  const addProductShoppingCart = () => {
+    let product = {
+      ...dataProduct,
+      quality: 1,
+    }
+    addProduct(product)
+  }
 
   return (
     <React.Fragment>
@@ -106,22 +117,32 @@ const ProductCard = () => {
         <Button className={classes.buttonDetail} onClick={handleOpenModal}><SearchIcon /></Button>
       </CardActionArea>
       <div className={classes.cardAction}>
-        
-          <Typography className={classes.nameProduct}>Nombre del producto</Typography>
-        
+          <Typography className={classes.nameProduct}>{ name }</Typography>
         <div className={classes.action}>
           <Button
             className={classes.icon}
+            onClick={addProductShoppingCart}
           >
             <AddShoppingCartIcon />
           </Button>
-          <Typography className={classes.priceProduct}>$300</Typography>
+          <Typography className={classes.priceProduct}>{`$ ${ priceUni }`}</Typography>
         </div>
       </div>
     </Card>
-    <ModalDetailProduct open={openModal} handleClose={handleCloseModal}/>
+    {/* Modal */}
+    <ModalDetailProduct 
+      open={openModal} 
+      handleClose={handleCloseModal} 
+      data={ dataProduct }
+    />
     </React.Fragment>
   );
 };
 
-export default ProductCard;
+const mapDispatchToProps = dispatch => ({
+  addProduct: (product) => {
+    dispatch(addProduct(product))
+  },
+})
+
+export default connect( null, mapDispatchToProps )(ProductCard);

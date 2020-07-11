@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
@@ -12,6 +12,9 @@ import ListIcon from '@material-ui/icons/List';
 import Categories from "./Categories";
 import Products from "./Products";
 import Pagination from '@material-ui/lab/Pagination';
+import { connect } from 'react-redux';
+import { loadProducts, loadCategories } from '../../redux/actions/actions'
+import axios from 'axios'
 
 const useStyle = makeStyles({
   contentGrid: {
@@ -79,7 +82,7 @@ const useStyle = makeStyles({
   },
 });
 
-const Home = () => {
+const Store = ({ loadProducts, loadCategories }) => {
   const classes = useStyle();
 
   const [openCategories, setOpenCategories] = useState(false);
@@ -88,6 +91,27 @@ const Home = () => {
     openCategories ? setOpenCategories(false) : setOpenCategories(true)
   };
 
+  useEffect(() => {
+    axios.get('http://localhost:3000/product/')
+      .then( (resp) => {
+        let products = resp.data.product
+        loadProducts(products)
+        console.log(resp.data.product)
+      })
+      .catch( (error) => {
+        console.log(error)
+      })
+
+      axios.get('http://localhost:3000/category/')
+      .then( (resp) => {
+        let categories = resp.data.categories
+        loadCategories(categories)
+        console.log(resp.data.categories)
+      })
+      .catch( (error) => {
+        console.log(error)
+      })
+  }, []);
 
   return (
     <Container className={classes.contentGrid}>
@@ -107,7 +131,7 @@ const Home = () => {
           </Drawer>
         </Hidden>
         <Hidden xsDown>
-          <Grid sm={3} md={2} item className={classes.contentCategory}>
+          <Grid item sm={3} md={2} className={classes.contentCategory}>
             <Categories />
           </Grid>
         </Hidden>
@@ -122,4 +146,13 @@ const Home = () => {
   );
 };
 
-export default Home;
+const mapDispatchToProps = dispatch => ({
+  loadProducts: (data) => {
+    dispatch(loadProducts(data))
+  },
+  loadCategories: (data) => {
+    dispatch(loadCategories(data))
+  },
+})
+
+export default connect( null, mapDispatchToProps )(Store);

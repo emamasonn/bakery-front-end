@@ -5,6 +5,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { Link } from "react-router-dom";
 import RowProduct from './RowProduct';
+import { connect } from 'react-redux';
+import Product from '../ListProductsCart/Product';
 
 const useStyles = makeStyles({
     contentTable:{
@@ -87,10 +89,24 @@ const useStyles = makeStyles({
     },
 });
 
-const ShoppingCart = () => {
+const ShoppingCart = ({ shoppingCart }) => {
   const classes = useStyles();
+    
+    const totalPrice = () => {
+        let prices = []
+        if(shoppingCart.length !== 0){
+            prices = shoppingCart.map((product) => {
+                return Number(product.priceUni) * Number(product.quality)
+            })
+            return prices.reduce((a=0, b)=> a + b) 
+        }else{
+            return '0.00'
+        }
+    }
 
-  return (
+    let total = totalPrice()
+
+    return (
         <Container maxWidth='lg' className={classes.contentTable}>
             <div className={classes.contentTitle}>
                 <Typography variant='h4' className={classes.titleListProduct}>Lista de Productos</Typography>
@@ -107,14 +123,14 @@ const ShoppingCart = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {[1, 2, 3, 4, 5, 6].map((e, index)=>(
-                        <RowProduct key={index}/>
+                    {shoppingCart.map((cart, index)=>(
+                        <RowProduct key={index} product={cart}/>
                     ))}
                 </tbody>
             </table>
             <div className={classes.contentTotal}>
                 <Typography variant='h6' className={classes.titleTotal}>Total</Typography>
-                <Typography variant='body1' className={classes.priceTotal}>$ 10,547.30</Typography>
+                <Typography variant='body1' className={classes.priceTotal}>{`$ ${ total }`}</Typography>
             </div>
             <div className={classes.contentButtonFinish}>
                 <Link to='/OrderForm' className={classes.linkButtonFinish}>
@@ -125,4 +141,8 @@ const ShoppingCart = () => {
   );
 }
 
-export default ShoppingCart;
+const mapStateToProps = state => ({
+    shoppingCart: state.orderProductReducer.shoppingCart
+})
+  
+export default connect( mapStateToProps )(ShoppingCart);

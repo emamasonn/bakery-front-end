@@ -14,8 +14,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import ListProductsCart from '../ListProductsCart/ListProductsCart'
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -128,11 +130,15 @@ const useStyles = makeStyles(theme => ({
         color: '#fff',
         margin: 5,
     },
+    buttonArrow: {
+        width: '100%',
+        padding: '10px 10px 0 10px',
+        color: '#fff',
+        justifyContent: 'flex-start',
+    }
 }));
 
-
-
-const NavegationBar = () => {
+const NavegationBar = ({ shoppingCart }) => {
     const classes = useStyles();
     const [drawer, setDrawer] = useState(false);
     const [drawerShopping, setDrawerShopping] = useState(false);
@@ -155,6 +161,22 @@ const NavegationBar = () => {
     const toggleDrawerShopping = () => {
         drawerShopping ? setDrawerShopping(false) : setDrawerShopping(true)
     }
+
+    const qualityProduct = shoppingCart.length
+
+    const totalPrice = () => {
+        let prices = []
+        if(shoppingCart.length !== 0){
+            prices = shoppingCart.map((product) => {
+                return Number(product.priceUni) * Number(product.quality)
+            })
+            return prices.reduce((a=0, b)=> a + b) 
+        }else{
+            return '0.00'
+        }
+    }
+
+    let total = totalPrice()
 
     return(
         <AppBar position="fixed" className={classes.root} id="appbar-navegation">
@@ -201,15 +223,20 @@ const NavegationBar = () => {
                 <ShoppingCartIcon onClick={toggleDrawerShopping}/>
                 <Divider orientation="vertical" flexItem className={classes.dividerShopping}/>
                 <div>
-                    <p className={classes.textPrice}>$0.00</p>
-                    <p className={classes.textProduct}>0 Productos</p>
+                    <p className={classes.textPrice}>{`$ ${ total }`}</p>
+                    <p className={classes.textProduct}>{`${ qualityProduct } Productos`}</p>
                 </div>
                 <Drawer 
                     open={drawerShopping} 
-                    onClick={toggleDrawerShopping}  
+                    onClose={toggleDrawerShopping}  
                     anchor='right'
-                >
+                >   
                     <div className={classes.drawerShopping}>
+                        <Button onClick={toggleDrawerShopping} 
+                            className={classes.buttonArrow}
+                        >
+                            <ArrowForwardIosIcon />
+                        </Button>
                         <Typography variant="h6" className={ classes.titleOrder}>MI PEDIDO</Typography>
                         <Divider className={classes.divider}/>
                         <ListProductsCart />
@@ -220,5 +247,8 @@ const NavegationBar = () => {
     )
 }
 
-export default NavegationBar
-
+const mapStateToProps = state => ({
+    shoppingCart: state.orderProductReducer.shoppingCart
+})
+  
+export default connect( mapStateToProps )(NavegationBar);

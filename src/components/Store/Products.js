@@ -1,19 +1,23 @@
 import React from "react";
 import ProductCard from "./ProductCard";
 import Grid from "@material-ui/core/Grid";
+import { connect } from 'react-redux';
 
-const arrayProduct = [1, 2, 3, 5, 4, 6, 6, 1, 2, 3, 5, 4, 6, 6];
+const Products = ({ products }) => {
 
-const Products = () => {
   return (
     <React.Fragment>
-      {arrayProduct.map((data, index) => (
-        <Grid xs={6} sm={6} md={3}>
-          <ProductCard dataProduct={data} key={index} />
+      {products.map((product, index) => (
+        <Grid item xs={6} sm={6} md={3} key={index}>
+          <ProductCard dataProduct={product} />
         </Grid>
       ))}
     </React.Fragment>
   );
 };
 
-export default Products;
+const mapStateToProps = state => ({
+  products: state.startReducer.products
+})
+
+export default connect( mapStateToProps )(Products);
