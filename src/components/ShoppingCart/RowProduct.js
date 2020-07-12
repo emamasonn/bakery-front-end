@@ -7,6 +7,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
 import { connect } from 'react-redux';
 import { addOrderProduct, deleteProduct, subtractOrderProduct } from '../../redux/actions/actions'
+import { env_app } from '../../config/config';
 
 const useStyles = makeStyles({
     trTable: {
@@ -131,8 +132,8 @@ const useStyles = makeStyles({
 });
 const RowProduct = ({ product, deleteProduct, subtractOrderProduct, addOrderProduct }) => {
     const classes = useStyles();
-    const { name, priceUni, quality, _id } = product
-
+    const { name, priceUni, quality, _id, img } = product
+    const nameImg = img.name
     const total = quality * priceUni
 
     const handleDeleteProduct = (id) => {
@@ -160,7 +161,7 @@ const RowProduct = ({ product, deleteProduct, subtractOrderProduct, addOrderProd
                 </Button>
             </td>
             <td className={classes.tdImg}>
-                <img className={classes.productImg} src='https://www.cocinacaserayfacil.net/wp-content/uploads/2019/11/Comida-francesa.jpg'/>
+                <img className={classes.productImg} src={`${ env_app.URL_API }/imagen/product/${ nameImg }`} alt='Product'/>
             </td>
             <td className={classes.tdNameProduct}>
                 <Typography variant='body2'>{ name }</Typography>

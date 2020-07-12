@@ -8,8 +8,9 @@ import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
 import { connect } from 'react-redux';
-import { searchProduct } from '../../redux/actions/actions'
-import axios from 'axios'
+import { searchProduct } from '../../redux/actions/actions';
+import { env_app } from '../../config/config';
+import axios from 'axios';
 
 const useStyle = makeStyles({
   contentSearch: {
@@ -24,7 +25,6 @@ const useStyle = makeStyles({
   },
   inputRoot: {
     border: '2px solid #eeeeee',
-    borderRadius: 4,
     padding: 5,
     height: 40,
     borderRadius: 4,
@@ -63,9 +63,12 @@ const Categories = ({ categories, searchProduct }) => {
   const [valueSearch, setValueSearch] = useState()
 
   const getSearchProduct = (termino) => {
-    axios.get(`http://localhost:3000/product/search/${ termino }`)
+    
+    if( termino === undefined ){
+      return
+    }
+    axios.get(`${ env_app.URL_API }/product/search/${ termino }`)
       .then( (resp) => {
-        console.log(resp)
         let product = resp.data.product
         searchProduct(product)
       })
@@ -75,10 +78,10 @@ const Categories = ({ categories, searchProduct }) => {
   }
 
   const getFindCategory = (category) => {
-    axios.get(`http://localhost:3000/product/find/${ category }`)
+    axios.get(`${ env_app.URL_API }/product/find/${ category }`)
       .then( (resp) => {
-        console.log(resp)
         let product = resp.data.product
+        console.log(product)
         searchProduct(product)
       })
       .catch( (error) => {

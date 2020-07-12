@@ -1,6 +1,5 @@
 import React, { useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import ProductImage from "../../assets/productimage.jpg";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -11,6 +10,7 @@ import ModalDetailProduct from '../ModalDetailProduct/ModalDeatilProduct'
 import SearchIcon from '@material-ui/icons/Search';
 import { connect } from 'react-redux';
 import { addProduct } from '../../redux/actions/actions'
+import { env_app } from '../../config/config'
 
 const useStyles = makeStyles({
   root: {
@@ -60,7 +60,6 @@ const useStyles = makeStyles({
     position: 'absolute',
     top: 7,
     right: 7,
-    background: 'red',
     fontSize: 12,
     padding: 0,
     borderRadius: '100%',
@@ -85,8 +84,9 @@ const useStyles = makeStyles({
 const ProductCard = ({ dataProduct, addProduct }) => {
   const classes = useStyles();
   const [openModal, setOpenModal] = useState(false);
-  const { name, priceUni, _id } = dataProduct
-
+  const { name, priceUni } = dataProduct
+  const nameImg = dataProduct.img.name
+  
   const handleOpenModal = () => {
     setOpenModal(true);
   };
@@ -102,7 +102,7 @@ const ProductCard = ({ dataProduct, addProduct }) => {
     }
     addProduct(product)
   }
-
+  
   return (
     <React.Fragment>
     <Card className={classes.root}>
@@ -111,7 +111,7 @@ const ProductCard = ({ dataProduct, addProduct }) => {
           className={classes.imgProduct}
           component="img"
           alt="Image product"
-          image={ProductImage}
+          image={`${ env_app.URL_API }/imagen/product/${ nameImg }`}
           title="Image Product"
         />
         <Button className={classes.buttonDetail} onClick={handleOpenModal}><SearchIcon /></Button>

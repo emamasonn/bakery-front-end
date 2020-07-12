@@ -7,9 +7,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import CloseIcon from '@material-ui/icons/Close';
-import ProductImage from "../../assets/productimage.jpg";
 import { connect } from 'react-redux';
-import { addProduct } from '../../redux/actions/actions'
+import { addProduct } from '../../redux/actions/actions';
+import { env_app } from '../../config/config';
 
 const useStyles = makeStyles({
   modal: {
@@ -38,10 +38,9 @@ const useStyles = makeStyles({
     cursor: 'pointer',
   },
   img: {
-    width: 300,
-    '@media (max-width:600px)': {
-      width: '100%',
-    },
+    width: '100%',
+    marginRight: 20,
+    maxWidth: 'fit-content',
   },
   contentImg: {
     display: 'flex',
@@ -87,7 +86,8 @@ const useStyles = makeStyles({
 
 const ModalDetailProduct = ({ open, handleClose, data, addProduct }) => {
     const classes = useStyles(); 
-    
+    const nameImg = data.img.name
+
     const handleAddProduct = () => {
       let product = {
         ...data,
@@ -116,10 +116,10 @@ const ModalDetailProduct = ({ open, handleClose, data, addProduct }) => {
                 <CloseIcon onClick={handleClose}/>
             </div>
             <Grid container spacing={3}>
-                <Grid xs={12} sm={5} className={classes.contentImg}>
-                    <img src={ProductImage} className={classes.img} alt="Image product"/>
+                <Grid item xs={12} sm={5} className={classes.contentImg}>
+                    <img src={`${ env_app.URL_API }/imagen/product/${ nameImg }`} className={classes.img} alt='Product'/>
                 </Grid>
-                <Grid xs={12} sm={7}>
+                <Grid item xs={12} sm={7}>
                     <div className={classes.contentDetail}>
                         <Typography variant='h4' className={classes.titleProduct}>{ data.name}</Typography>
                         <Typography variant='h5' className={classes.priceProduct}>{`$ ${ data.priceUni}`}</Typography>
