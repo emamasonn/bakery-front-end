@@ -25,7 +25,6 @@ const useStyle = makeStyles({
   },
   inputRoot: {
     border: '2px solid #eeeeee',
-    borderRadius: 4,
     padding: 5,
     height: 40,
     borderRadius: 4,
@@ -64,6 +63,10 @@ const Categories = ({ categories, searchProduct }) => {
   const [valueSearch, setValueSearch] = useState()
 
   const getSearchProduct = (termino) => {
+    
+    if( termino === undefined ){
+      return
+    }
     axios.get(`${ env_app.URL_API }/product/search/${ termino }`)
       .then( (resp) => {
         let product = resp.data.product
@@ -78,6 +81,7 @@ const Categories = ({ categories, searchProduct }) => {
     axios.get(`${ env_app.URL_API }/product/find/${ category }`)
       .then( (resp) => {
         let product = resp.data.product
+        console.log(product)
         searchProduct(product)
       })
       .catch( (error) => {

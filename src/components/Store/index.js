@@ -111,8 +111,8 @@ const Store = ({ loadProducts, loadCategories }) => {
       .catch( (error) => {
         console.log(error)
       })
-  }, []);
-
+  });
+  
   return (
     <Container className={classes.contentGrid}>
       <Typography variant='h3' className={classes.titleStore}>Nuestros Productos</Typography>

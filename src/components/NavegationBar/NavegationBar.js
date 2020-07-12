@@ -90,7 +90,6 @@ const useStyles = makeStyles(theme => ({
     linkTextBurger:{
         display: 'flex',
         textDecoration: 'none',
-        color: '#263238',
         marginRight: 20,
         color: '#fff',
     },
@@ -177,7 +176,7 @@ const NavegationBar = ({ shoppingCart }) => {
     }
 
     let total = totalPrice()
-
+    
     return(
         <AppBar position="fixed" className={classes.root} id="appbar-navegation">
             <Hidden smUp>
@@ -190,9 +189,9 @@ const NavegationBar = ({ shoppingCart }) => {
                                 <Link to="https://www.instagram.com" className={classes.linkSocial}><InstagramIcon/></Link>
                             </div>
                             <List>
-                                <ListItem button key='tienda'>
+                                <ListItem button key='tienda' >
                                     <Link to="/" className={classes.linkTextBurger}>
-                                        <ListItemText primary='Tienda'/>
+                                        <ListItemText primary='Tienda' />
                                     </Link>
                                 </ListItem>
                                 <Divider className={classes.dividerMenu}/>
@@ -217,7 +216,7 @@ const NavegationBar = ({ shoppingCart }) => {
                 </div>
             </Hidden>
             <div>
-                <Link to="/" ><img src={logo} className={classes.logo}/></Link>
+                <Link to="/" ><img src={logo} className={classes.logo} alt='logo'/></Link>
             </div>
             <div className={classes.contentShopping}>
                 <ShoppingCartIcon onClick={toggleDrawerShopping}/>

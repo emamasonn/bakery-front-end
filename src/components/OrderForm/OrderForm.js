@@ -92,7 +92,6 @@ const useStyles = makeStyles(({
 
 const OrderForm = ({ shoppingCart })=> {
     const classes = useStyles();
-    console.log(shoppingCart)
     const [name, setName] = useState();
     const [ lastName, setLastName ] = useState();
     const [ address, setAddress ] = useState();
@@ -101,7 +100,6 @@ const OrderForm = ({ shoppingCart })=> {
     const [ telephone, setTelephone ] = useState();
     const [ email, setEmail ] = useState();
     const [ description, setDescription ] = useState();
-
     const [modalOrder, setModalOrder] = useState({open: false, error: false});
 
     const handleChangeName = (event) => {
