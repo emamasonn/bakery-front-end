@@ -96,7 +96,7 @@ const Store = ({ loadProducts, loadCategories }) => {
     axios.get(`${ process.env.REACT_APP_URL_LOCAL }/product`)
       .then( (resp) => {
         let products = resp.data.product
-        loadProducts(products)
+        loadProducts([...products])
       })
       .catch( (error) => {
         console.log(error)
@@ -105,7 +105,7 @@ const Store = ({ loadProducts, loadCategories }) => {
       axios.get(`${ process.env.REACT_APP_URL_LOCAL }/category`)
       .then( (resp) => {
         let categories = resp.data.categories
-        loadCategories(categories)
+        loadCategories([...categories])
       })
       .catch( (error) => {
         console.log(error)
