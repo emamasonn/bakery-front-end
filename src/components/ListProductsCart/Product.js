@@ -26,7 +26,6 @@ const useStyles = makeStyles({
 
 const Product = ({ product, deleteProduct }) => {
     const classes = useStyles()
-    console.log(product)
     const { name, quality, priceUni, _id} = product
     const nameImg = product.img.name
     const handleDeleteProduct = (id) => {
