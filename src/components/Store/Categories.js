@@ -9,7 +9,6 @@ import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
 import { connect } from 'react-redux';
 import { searchProduct } from '../../redux/actions/actions';
-import { env_app } from '../../config/config';
 import axios from 'axios';
 
 const useStyle = makeStyles({
@@ -67,7 +66,7 @@ const Categories = ({ categories, searchProduct }) => {
     if( termino === undefined ){
       return
     }
-    axios.get(`${ env_app.URL_API }/product/search/${ termino }`)
+    axios.get(`${ process.env.REACT_APP_URL_LOCAL }/product/search/${ termino }`)
       .then( (resp) => {
         let product = resp.data.product
         searchProduct(product)
@@ -78,10 +77,9 @@ const Categories = ({ categories, searchProduct }) => {
   }
 
   const getFindCategory = (category) => {
-    axios.get(`${ env_app.URL_API }/product/find/${ category }`)
+    axios.get(`${ process.env.REACT_APP_URL_LOCAL }/product/find/${ category }`)
       .then( (resp) => {
         let product = resp.data.product
-        console.log(product)
         searchProduct(product)
       })
       .catch( (error) => {

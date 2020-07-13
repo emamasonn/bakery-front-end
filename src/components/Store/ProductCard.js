@@ -10,7 +10,6 @@ import ModalDetailProduct from '../ModalDetailProduct/ModalDeatilProduct'
 import SearchIcon from '@material-ui/icons/Search';
 import { connect } from 'react-redux';
 import { addProduct } from '../../redux/actions/actions'
-import { env_app } from '../../config/config'
 
 const useStyles = makeStyles({
   root: {
@@ -111,7 +110,7 @@ const ProductCard = ({ dataProduct, addProduct }) => {
           className={classes.imgProduct}
           component="img"
           alt="Image product"
-          image={`${ env_app.URL_API }/imagen/product/${ nameImg }`}
+          image={`${ process.env.REACT_APP_URL_LOCAL }/imagen/product/${ nameImg }`}
           title="Image Product"
         />
         <Button className={classes.buttonDetail} onClick={handleOpenModal}><SearchIcon /></Button>

@@ -12,7 +12,7 @@ export default function (state = initialState, action){
             return {...state, products: [...products]}
         case LOAD_CATEGORIES: 
             let categories = action.payload
-            return {...state, categories: [...state.categories, ...categories]}
+            return {...state, categories: [...categories]}
         case SEARCH_PRODUCT: 
             let product = action.payload
             return {...state, products: [...product]}
