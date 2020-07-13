@@ -69,7 +69,7 @@ const Categories = ({ categories, searchProduct }) => {
     axios.get(`${ process.env.REACT_APP_URL_LOCAL }/product/search/${ termino }`)
       .then( (resp) => {
         let product = resp.data.product
-        searchProduct(product)
+        searchProduct([...product])
       })
       .catch( (error) => {
         console.log(error)
@@ -80,7 +80,7 @@ const Categories = ({ categories, searchProduct }) => {
     axios.get(`${ process.env.REACT_APP_URL_LOCAL }/product/find/${ category }`)
       .then( (resp) => {
         let product = resp.data.product
-        searchProduct(product)
+        searchProduct([...product])
       })
       .catch( (error) => {
         console.log(error)

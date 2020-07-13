@@ -60,7 +60,7 @@ const Contact = () => {
                         <Typography className={classes.contactList} variant="body2">Ayemostartas</Typography>
                       </ListItem>
                       <ListItem>
-                        <InstagramIcon className={classes.Icon}/> 
+                        <InstagramIcon className={classes.icon}/> 
                         <Typography className={classes.ContactList} variant="body2"> Ayemostartas</Typography>
                       </ListItem>
                   </Box>
