@@ -4,7 +4,6 @@ import ClearIcon from '@material-ui/icons/Clear';
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { deleteProduct } from '../../redux/actions/actions'
-import { env_app } from '../../config/config';
 
 const useStyles = makeStyles({
     contentProduct: {
@@ -36,7 +35,7 @@ const Product = ({ product, deleteProduct }) => {
     
     return(
         <div className={classes.contentProduct}>
-            <img src={`${ env_app.URL_API }/imagen/product/${ nameImg }`} className={classes.imgProduct} alt='Product'/>
+            <img src={`${ process.env.REACT_APP_URL_LOCAL }/imagen/product/${ nameImg }`} className={classes.imgProduct} alt='Product'/>
             <div className={classes.contentNamePrice}>
                 <Typography variant='body2'>{ name }</Typography>
                 <Typography variant='body2'>{`${ quality } x $ ${priceUni}`}</Typography>

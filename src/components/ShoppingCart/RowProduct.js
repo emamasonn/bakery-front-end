@@ -7,7 +7,6 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
 import { connect } from 'react-redux';
 import { addOrderProduct, deleteProduct, subtractOrderProduct } from '../../redux/actions/actions'
-import { env_app } from '../../config/config';
 
 const useStyles = makeStyles({
     trTable: {
@@ -161,7 +160,7 @@ const RowProduct = ({ product, deleteProduct, subtractOrderProduct, addOrderProd
                 </Button>
             </td>
             <td className={classes.tdImg}>
-                <img className={classes.productImg} src={`${ env_app.URL_API }/imagen/product/${ nameImg }`} alt='Product'/>
+                <img className={classes.productImg} src={`${ process.env.REACT_APP_URL_LOCAL }/imagen/product/${ nameImg }`} alt='Product'/>
             </td>
             <td className={classes.tdNameProduct}>
                 <Typography variant='body2'>{ name }</Typography>

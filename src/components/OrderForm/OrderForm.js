@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
-import { env_app } from '../../config/config'
 import axios from 'axios';
 import ModalOrder from './ModalOrder'
 
@@ -139,7 +138,7 @@ const OrderForm = ({ shoppingCart })=> {
     }
 
     const sendOrderApi = (data) => {
-        axios.post(`${ env_app.URL_API }/order`, data)
+        axios.post(`${ process.env.REACT_APP_URL_LOCAL }/order`, data)
         .then( (resp) => {
             setModalOrder({open: true, error: false})
             document.getElementById('id-form-order').reset()

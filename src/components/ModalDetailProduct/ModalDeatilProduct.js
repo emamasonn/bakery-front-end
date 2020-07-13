@@ -9,7 +9,6 @@ import Grid from '@material-ui/core/Grid';
 import CloseIcon from '@material-ui/icons/Close';
 import { connect } from 'react-redux';
 import { addProduct } from '../../redux/actions/actions';
-import { env_app } from '../../config/config';
 
 const useStyles = makeStyles({
   modal: {
@@ -117,7 +116,7 @@ const ModalDetailProduct = ({ open, handleClose, data, addProduct }) => {
             </div>
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={5} className={classes.contentImg}>
-                    <img src={`${ env_app.URL_API }/imagen/product/${ nameImg }`} className={classes.img} alt='Product'/>
+                    <img src={`${ process.env.REACT_APP_URL_LOCAL }/imagen/product/${ nameImg }`} className={classes.img} alt='Product'/>
                 </Grid>
                 <Grid item xs={12} sm={7}>
                     <div className={classes.contentDetail}>
