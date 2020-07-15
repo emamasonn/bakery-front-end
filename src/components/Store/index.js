@@ -46,6 +46,7 @@ const useStyle = makeStyles({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    padding: '10px !important',
   },
   contentFilter:{
     display: 'flex',
@@ -84,24 +85,41 @@ const useStyle = makeStyles({
 
 const Store = ({ loadProducts, loadCategories }) => {
   const classes = useStyle();
-
   const [openCategories, setOpenCategories] = useState(false);
+  const [page, setPage] = useState(1);
+  const [qualityPage, setQualityPage] = useState(1);
+  
+  const handleChangePagination = (event, value) => {
+    setPage(value);
+  };
 
   const toggleDrawer = () => {
     openCategories ? setOpenCategories(false) : setOpenCategories(true)
   };
 
-  useEffect(() => {
-    
-    axios.get(`${ process.env.REACT_APP_URL_LOCAL }/product`)
+  useEffect(()=>{
+    let beginPage = 0
+    let endPage = 12
+    for(let i=1; i<page; i++){
+      beginPage += 12
+    }
+    axios.get(`${ process.env.REACT_APP_URL_LOCAL }/product/${ beginPage }/${ endPage }`)
       .then( (resp) => {
+        let totalPage = (resp.data.cuanto / 12)
+        let val = Math.trunc(totalPage)
+        if(totalPage - val > 0){
+          val = val + 1
+        }
+        setQualityPage(val)
         let products = resp.data.product
         loadProducts([...products])
       })
       .catch( (error) => {
         console.log(error)
       })
+  }, [page]);
 
+  useEffect(() => {
       axios.get(`${ process.env.REACT_APP_URL_LOCAL }/category`)
       .then( (resp) => {
         let categories = resp.data.categories
@@ -138,7 +156,7 @@ const Store = ({ loadProducts, loadCategories }) => {
           <Products />
         </Grid>
         <Grid item xs={12} className={classes.contentPagination}>
-          <Pagination count={120} size="small"/>
+          <Pagination size="small" count={qualityPage} page={page} onChange={handleChangePagination}/>
         </Grid>
       </Grid>
     </Container>
