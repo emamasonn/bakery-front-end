@@ -103,7 +103,7 @@ const Store = ({ loadProducts, loadCategories }) => {
     for(let i=1; i<page; i++){
       beginPage += 12
     }
-    axios.get(`${ process.env.REACT_APP_URL_LOCAL }/product/${ beginPage }/${ endPage }`)
+    axios.get(`${ process.env.REACT_APP_URL_LOCAL }/product/all/${ beginPage }/${ endPage }`)
       .then( (resp) => {
         let totalPage = (resp.data.cuanto / 12)
         let val = Math.trunc(totalPage)
