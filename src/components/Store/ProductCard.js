@@ -20,8 +20,11 @@ const useStyles = makeStyles({
     },
   },
   imgProduct: {
+    maxHeight: 200,
+    minHeight: 200,
     '@media (max-width:600px)': {
       height: 170,
+      minHeight: 170,
     },
   },
   icon: {
