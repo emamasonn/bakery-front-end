@@ -1,15 +1,15 @@
-import React, { useState} from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import ModalDetailProduct from '../ModalDetailProduct/ModalDeatilProduct'
+import ModalDetailProduct from '../ModalDetailProduct/ModalDeatilProduct';
 import SearchIcon from '@material-ui/icons/Search';
 import { connect } from 'react-redux';
-import { addProduct } from '../../redux/actions/actions'
+import { addProduct } from '../../redux/actions/actions';
 
 const useStyles = makeStyles({
   root: {
@@ -17,20 +17,20 @@ const useStyles = makeStyles({
     margin: '0 5px 40px 5px',
     '@media (max-width:600px)': {
       margin: '0 7px 20px 7px',
-    }
+    },
   },
-  imgProduct:{
+  imgProduct: {
     '@media (max-width:600px)': {
       height: 170,
-    }
+    },
   },
   icon: {
     padding: 0,
     minWidth: 'min-content',
     color: '#ad172b',
-    '&:hover':{
+    '&:hover': {
       color: '#d32f2f',
-    }
+    },
   },
   padding: {
     padding: 5,
@@ -66,26 +66,26 @@ const useStyles = makeStyles({
     minWidth: 'unset',
     height: 40,
     width: 40,
-    '&:hover':{
+    '&:hover': {
       color: '#ad172b',
       background: '#fafafa',
-    }
+    },
   },
   priceProduct: {
     marginLeft: 5,
     fontSize: 15,
-    '&:hover':{
+    '&:hover': {
       color: '#ad172b',
-    }
+    },
   },
 });
 
 const ProductCard = ({ dataProduct, addProduct }) => {
   const classes = useStyles();
   const [openModal, setOpenModal] = useState(false);
-  const { name, priceUni } = dataProduct
-  const nameImg = dataProduct.img.name
-  
+  const { name, priceUni } = dataProduct;
+  const nameImg = dataProduct.img.name;
+
   const handleOpenModal = () => {
     setOpenModal(true);
   };
@@ -98,50 +98,51 @@ const ProductCard = ({ dataProduct, addProduct }) => {
     let product = {
       ...dataProduct,
       quality: 1,
-    }
-    addProduct(product)
-  }
-  
+    };
+    addProduct(product);
+  };
+
   return (
     <React.Fragment>
-    <Card className={classes.root}>
-      <CardActionArea className={classes.cardActionArea}>
-        <CardMedia
-          className={classes.imgProduct}
-          component="img"
-          alt="Image product"
-          image={`${ process.env.REACT_APP_URL_LOCAL }/imagen/product/${ nameImg }`}
-          title="Image Product"
-        />
-        <Button className={classes.buttonDetail} onClick={handleOpenModal}><SearchIcon /></Button>
-      </CardActionArea>
-      <div className={classes.cardAction}>
-          <Typography className={classes.nameProduct}>{ name }</Typography>
-        <div className={classes.action}>
-          <Button
-            className={classes.icon}
-            onClick={addProductShoppingCart}
-          >
-            <AddShoppingCartIcon />
+      <Card className={classes.root}>
+        <CardActionArea className={classes.cardActionArea}>
+          <CardMedia
+            className={classes.imgProduct}
+            component="img"
+            alt="Image product"
+            image={`https://bakery-api-rest.herokuapp.com/imagen/CanonesRellenos.jpg`}
+            title="Image Product"
+          />
+          <Button className={classes.buttonDetail} onClick={handleOpenModal}>
+            <SearchIcon />
           </Button>
-          <Typography className={classes.priceProduct}>{`$ ${ priceUni }`}</Typography>
+        </CardActionArea>
+        <div className={classes.cardAction}>
+          <Typography className={classes.nameProduct}>{name}</Typography>
+          <div className={classes.action}>
+            <Button className={classes.icon} onClick={addProductShoppingCart}>
+              <AddShoppingCartIcon />
+            </Button>
+            <Typography
+              className={classes.priceProduct}
+            >{`$ ${priceUni}`}</Typography>
+          </div>
         </div>
-      </div>
-    </Card>
-    {/* Modal */}
-    <ModalDetailProduct 
-      open={openModal} 
-      handleClose={handleCloseModal} 
-      data={ dataProduct }
-    />
+      </Card>
+      {/* Modal */}
+      <ModalDetailProduct
+        open={openModal}
+        handleClose={handleCloseModal}
+        data={dataProduct}
+      />
     </React.Fragment>
   );
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   addProduct: (product) => {
-    dispatch(addProduct(product))
+    dispatch(addProduct(product));
   },
-})
+});
 
-export default connect( null, mapDispatchToProps )(ProductCard);
+export default connect(null, mapDispatchToProps)(ProductCard);
