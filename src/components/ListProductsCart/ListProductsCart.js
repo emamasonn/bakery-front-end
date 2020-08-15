@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -29,21 +29,23 @@ const useStyles = makeStyles({
     marginTop: 15,
     color: '#fff',
     '&:hover': {
-        background: '#b71c1c',
-    }
+      background: '#b71c1c',
+    },
   },
   link: {
-      textDecoration: 'none',
+    textDecoration: 'none',
   },
   divider: {
-      background: '#212121',
+    background: '#212121',
   },
   listProducts: {
     padding: 0,
+    background: '#101010',
   },
   contentSubtotal: {
-    position: 'absolute',
-    bottom: 10,
+    //position: 'absolute',
+    //bottom: 10,
+    background: '#101010',
     borderTop: '2px solid #212121',
     width: '100%',
     textAlign: 'center',
@@ -59,8 +61,8 @@ const useStyles = makeStyles({
     background: '#fafafa',
     color: '#212121',
     '&:hover': {
-        background: '#eeeeee',
-    }
+      background: '#eeeeee',
+    },
   },
   finishOrder: {
     width: '90%',
@@ -68,76 +70,78 @@ const useStyles = makeStyles({
     color: '#fff',
     marginTop: 10,
     '&:hover': {
-        background: '#b71c1c',
-    }
+      background: '#b71c1c',
+    },
   },
 });
 
 const ListProductsCart = ({ shoppingCart }) => {
-    const classes = useStyles();
+  const classes = useStyles();
 
-    const totalPrice = () => {
-      let prices = []
-      if(shoppingCart.length !== 0){
-          prices = shoppingCart.map((product) => {
-              return Number(product.priceUni) * Number(product.quality)
-          })
-          return prices.reduce((a=0, b)=> a + b) 
-      }else{
-          return '0.00'
-      }
+  const totalPrice = () => {
+    let prices = [];
+    if (shoppingCart.length !== 0) {
+      prices = shoppingCart.map((product) => {
+        return Number(product.priceUni) * Number(product.quality);
+      });
+      return prices.reduce((a = 0, b) => a + b);
+    } else {
+      return '0.00';
     }
+  };
 
-    let total = totalPrice()
+  let total = totalPrice();
 
-    const productsInCart = (total) => {
-        return(
-            <div>
-                <List className={classes.listProducts}>
-                    {shoppingCart.map((product, index) => (
-                        <div key={index}>
-                            <Divider className={classes.divider}/>
-                            <Product product={product}/>
-                        </div>
-                    ))}
-                </List>
-                <div className={classes.contentSubtotal}>
-                    <diV className={classes.subtotal}>
-                        <Typography variant='h6'>SUBTOTAL:</Typography>
-                        <Typography variant='h6'>{`$ ${ total }`}</Typography>
-                    </diV>
-                    <Link to='/ShoppingCart' className={classes.link}>
-                      <Button className={classes.showCart}>Ver Carrito</Button>
-                    </Link>
-                    <Link to='/OrderForm' className={classes.link}>
-                      <Button className={classes.finishOrder}>Finalzar Pedido</Button>
-                    </Link>
-                    
-                </div>
-            </div>
-        );
-    }
-
-    const productsEmptyCart = () => {
-        return(
-            <div className={classes.contentEmptyCart}>
-                <RemoveShoppingCartIcon className={classes.iconEmptyCart}/>
-                <Typography variant="body1">No se econtraron productos</Typography>
-                <Link to='/' className={classes.link}>
-                    <Button variant="contained" className={classes.buttonBack}>Retornar</Button>
-                </Link>
-            </div>
-        );
-    } 
+  const productsInCart = (total) => {
     return (
-        <React.Fragment>
-            {shoppingCart.length === 0 ? productsEmptyCart() : productsInCart(total)}
-        </React.Fragment>
+      <div>
+        <List className={classes.listProducts}>
+          {shoppingCart.map((product, index) => (
+            <div key={index}>
+              <Divider className={classes.divider} />
+              <Product product={product} />
+            </div>
+          ))}
+        </List>
+
+        <div className={classes.contentSubtotal}>
+          <diV className={classes.subtotal}>
+            <Typography variant="h6">SUBTOTAL:</Typography>
+            <Typography variant="h6">{`$ ${total}`}</Typography>
+          </diV>
+          <Link to="/ShoppingCart" className={classes.link}>
+            <Button className={classes.showCart}>Ver Carrito</Button>
+          </Link>
+          <Link to="/OrderForm" className={classes.link}>
+            <Button className={classes.finishOrder}>Finalzar Pedido</Button>
+          </Link>
+        </div>
+      </div>
+    );
+  };
+
+  const productsEmptyCart = () => {
+    return (
+      <div className={classes.contentEmptyCart}>
+        <RemoveShoppingCartIcon className={classes.iconEmptyCart} />
+        <Typography variant="body1">No se econtraron productos</Typography>
+        <Link to="/" className={classes.link}>
+          <Button variant="contained" className={classes.buttonBack}>
+            Retornar
+          </Button>
+        </Link>
+      </div>
+    );
+  };
+  return (
+    <React.Fragment>
+      {shoppingCart.length === 0 ? productsEmptyCart() : productsInCart(total)}
+    </React.Fragment>
   );
-}
+};
 
-const mapStateToProps = state => ({
-  shoppingCart: state.orderProductReducer.shoppingCart
-})
+const mapStateToProps = (state) => ({
+  shoppingCart: state.orderProductReducer.shoppingCart,
+});
 
-export default connect( mapStateToProps )(ListProductsCart);
+export default connect(mapStateToProps)(ListProductsCart);
