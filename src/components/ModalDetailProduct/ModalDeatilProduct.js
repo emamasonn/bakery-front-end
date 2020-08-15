@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -49,7 +49,7 @@ const useStyles = makeStyles({
   titleProduct: {
     margin: '15px 0',
     '@media (max-width:600px)': {
-        fontSize: 22,
+      fontSize: 22,
     },
   },
   priceProduct: {
@@ -61,7 +61,7 @@ const useStyles = makeStyles({
     paddingRight: 80,
     '@media (max-width:600px)': {
       paddingRight: 0,
-  },
+    },
   },
   buttonProduct: {
     marginTop: 30,
@@ -69,7 +69,7 @@ const useStyles = makeStyles({
     color: '#fff',
     '&:hover': {
       background: '#ad172b',
-    }
+    },
   },
   contentDetail: {
     '@media (max-width:600px)': {
@@ -84,63 +84,77 @@ const useStyles = makeStyles({
 });
 
 const ModalDetailProduct = ({ open, handleClose, data, addProduct }) => {
-    const classes = useStyles(); 
-    const nameImg = data.img.name
+  const classes = useStyles();
+  const nameImg = data.img.name;
 
-    const handleAddProduct = () => {
-      let product = {
-        ...data,
-        quality: 1,
-      }
-      addProduct(product)
-      handleClose()
-    }
+  const handleAddProduct = () => {
+    let product = {
+      ...data,
+      quality: 1,
+    };
+    addProduct(product);
+    handleClose();
+  };
 
-    return(
-        <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={open}>
-          <div className={classes.paper}>
-            <div className={classes.contentIcon}>
-                <CloseIcon onClick={handleClose}/>
-            </div>
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={5} className={classes.contentImg}>
-                    <img src={`${ process.env.REACT_APP_URL_LOCAL }/imagen/product/${ nameImg }`} className={classes.img} alt='Product'/>
-                </Grid>
-                <Grid item xs={12} sm={7}>
-                    <div className={classes.contentDetail}>
-                        <Typography variant='h4' className={classes.titleProduct}>{ data.name}</Typography>
-                        <Typography variant='h5' className={classes.priceProduct}>{`$ ${ data.priceUni}`}</Typography>
-                        <Typography variant='body2' className={classes.detailProduct}>
-                            { data.description }
-                        </Typography>
-                        <div className={classes.contentButton}>
-                          <Button className={classes.buttonProduct} onClick={handleAddProduct}>Comprar</Button>
-                        </div>
-                    </div>
-                </Grid>
-            </Grid>
+  return (
+    <Modal
+      aria-labelledby="transition-modal-title"
+      aria-describedby="transition-modal-description"
+      className={classes.modal}
+      open={open}
+      onClose={handleClose}
+      closeAfterTransition
+      BackdropComponent={Backdrop}
+      BackdropProps={{
+        timeout: 500,
+      }}
+    >
+      <Fade in={open}>
+        <div className={classes.paper}>
+          <div className={classes.contentIcon}>
+            <CloseIcon onClick={handleClose} />
           </div>
-        </Fade>
-      </Modal>
-    )
-}
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={5} className={classes.contentImg}>
+              <img
+                src={`${process.env.REACT_APP_URL_LOCAL}/imagen/${nameImg}`}
+                className={classes.img}
+                alt="Product"
+              />
+            </Grid>
+            <Grid item xs={12} sm={7}>
+              <div className={classes.contentDetail}>
+                <Typography variant="h4" className={classes.titleProduct}>
+                  {data.name}
+                </Typography>
+                <Typography
+                  variant="h5"
+                  className={classes.priceProduct}
+                >{`$ ${data.priceUni}`}</Typography>
+                <Typography variant="body2" className={classes.detailProduct}>
+                  {data.description}
+                </Typography>
+                <div className={classes.contentButton}>
+                  <Button
+                    className={classes.buttonProduct}
+                    onClick={handleAddProduct}
+                  >
+                    Comprar
+                  </Button>
+                </div>
+              </div>
+            </Grid>
+          </Grid>
+        </div>
+      </Fade>
+    </Modal>
+  );
+};
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   addProduct: (product) => {
-    dispatch(addProduct(product))
+    dispatch(addProduct(product));
   },
-})
+});
 
-export default connect( null, mapDispatchToProps )(ModalDetailProduct);
+export default connect(null, mapDispatchToProps)(ModalDetailProduct);

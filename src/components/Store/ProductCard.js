@@ -110,7 +110,7 @@ const ProductCard = ({ dataProduct, addProduct }) => {
             className={classes.imgProduct}
             component="img"
             alt="Image product"
-            image={`https://bakery-api-rest.herokuapp.com/imagen/CanonesRellenos.jpg`}
+            image={`${process.env.REACT_APP_URL_LOCAL}/imagen/${nameImg}`}
             title="Image Product"
           />
           <Button className={classes.buttonDetail} onClick={handleOpenModal}>
